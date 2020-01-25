@@ -1,0 +1,60 @@
+<div class="container" ng-controller="homeViewCtrl"><div class="row"></div><div class="row" ng-if="loggedInUserData && !loggedInUserData.userAccountStatusDTO.whetherSubscriber"><a href="#" ng-click="showDocument($event)"><blinking-text>New : Digital Health Record !</blinking-text></a></div><view-file-pop-up visible="viewFileContent" file-resource="fileResource" user-id="1"><view-file-pop-up-header title="{{'VIEW_FILE_CONTENTS' | translate}}"></view-file-pop-up-header><view-file-pop-up-body></view-file-pop-up-body><view-file-pop-up-footer is-hiding-print-button="isHidingPrintButton"></view-file-pop-up-footer></view-file-pop-up><div class="popHolder"><div class="messagepop pop"><spinner name="feedbackFormSpinner" img-src="{{pageLoaderImg}}" show="feedbackFormSpinner"></spinner><form id="new_message" name="feedbackForm" autocomplete="off" ng-submit="submitFeedback(feedbackForm)" novalidate><div class="pop-title">{{'GIVE_FEEDBACK' | translate}} <a class="close pull-right" href="/">x</a></div><div class="pop-form pop-form-height"><div layout-gt-sm="row"><md-input-container class="md-block" flex-gt-sm=""><label class="md-required">{{'FULL_NAME' | translate}}</label><input ng-model="user.name" name="name" required></md-input-container></div><div layout-gt-sm="row"><md-input-container class="md-block" flex-gt-sm=""><label class="md-required">{{'EMAIL' | translate}}</label><input ng-model="user.email" name="email" ng-pattern="/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/" required></md-input-container></div><div layout-gt-sm="row"><md-input-container class="md-block" flex-gt-sm=""><label class="md-required">{{'CONTACT_NO' | translate}}</label><input ng-model="user.contact" name="contact" ng-pattern="/^[0-9]{10,15}$/" required></md-input-container></div><div layout-gt-sm="row"><md-input-container class="md-block" flex-gt-sm=""><label class="md-required">{{'FEEDBACK' | translate}}</label><textarea ng-model="user.feedback" name="feedback" md-maxlength="250" required></textarea></md-input-container></div><md-button type="submit" class="md-raised md-warn pull-right" ng-disabled="feedbackForm.$invalid">{{'SUBMIT_FEEDBACK' | translate}}</md-button></div></form></div><a href="/contact" id="contact" class="indexFixedIcon chatIcon"></a></div><div ng-cloak><div class="row secoundery-menu" id="nav"><nav class="cf"><ul class="cf" style="margin-top: 8px !important"><li ng-class="{ active: isActiveTab(tab.id) } " ng-repeat="tab in orgTabs" ng-if="loggedInUserDetails.isOrganizationUser && loggedInUserDetails.isOrganizationUserMode" ng-click="setCurrentTab(tab)"><a ng-class="{'secondary-menu-icon-padding': tab.name == 'MY_TAB' || tab.name == 'ACTIONS' || tab.name == 'OTHERS'}" rel="nofollow" rel="noreferrer" href=""><md-tooltip md-direction="bottom">{{tab.name | translate}}</md-tooltip><i ng-class="{'fa fa-home fa-lg': tab.name == 'HOME', 'fa my-tab main-top-menu-iocn': tab.name == 'MY_TAB', 'fa fa-line-chart fa-lg': tab.name == 'STATISTICS', 'fa actions-icon main-top-menu-iocn': tab.name == 'ACTIONS', 'fa others main-top-menu-iocn': tab.name == 'OTHERS'}" class="secoundery-menu-icon"></i> <span class="secoundery-menu-text" ng-class="{'padding-t-6': tab.name == 'MY_TAB' || tab.name == 'ACTIONS' || tab.name == 'OTHERS'}">{{tab.name | translate}}</span></a></li><li ng-class="{ active: isActiveTab(tab.id) } " ng-repeat="tab in indTabs" ng-if="!loggedInUserDetails.isOrganizationUser || !loggedInUserDetails.isOrganizationUserMode" ng-click="setCurrentTab(tab)"><a ng-class="{'secondary-menu-icon-padding': tab.name == 'MY_RECORDS' || tab.name == 'OTHER' || tab.name == 'COMMUNITY_AND_LEARNING'}" rel="nofollow" rel="noreferrer" href=""><md-tooltip md-direction="bottom">{{tab.name | translate}}</md-tooltip><i ng-class="{'fa my-records main-top-menu-iocn': tab.name == 'MY_RECORDS', 'fa my-appointments main-top-menu-iocn': tab.name == 'MY_APPOINTMENTS', 'fa others main-top-menu-iocn': tab.name == 'OTHER', 'fa community-learning main-top-menu-iocn': tab.name == 'COMMUNITY_AND_LEARNING', 'fa fa-line-chart fa-lg': tab.name == 'STATISTICS'}" class="secoundery-menu-icon"></i> <span class="secoundery-menu-text" ng-class="{'padding-t-6': tab.name == 'MY_RECORDS' || tab.name == 'OTHER' || tab.name == 'COMMUNITY_AND_LEARNING'}">{{tab.name | translate}}</span></a></li><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="float:right !important; margin-top: 7px" ng-if="trustedAppDetails.length > 0"><div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 padding-r-0"><md-input-container class="textAlign-L"><label class="md-required">{{"SWITCH_EXTERNAL_APP"|translate}}</label><md-select ng-model="clientAppDetail" name="" class=""><md-option ng-repeat="detail in trustedAppDetails" value="{{detail}}" ng-selected="trustedAppDetails.length == 1? true:false"><span class="">{{detail.trustedAppName | translate}}</span></md-option></md-select></md-input-container></div><button style="margin-top: 16px; margin-right: 6px" ng-click="goToClientApp(clientAppDetail)" ng-if="clientAppDetail != null" class="pull-right"><i class="fa fa-external-link"></i> {{'GO' | translate}}</button></div></ul><a rel="nofollow" rel="noreferrer" id="openup" ng-class="{active: isActiveTab(selectedTab.id)}">{{selectedTab.name | translate}}</a></nav></div><div class="row layout-align-start-center padding-b-10 padding-l-6 textAlign-C" ng-if="mobileCheck()"><strong>{{selectedTab.name | translate}}</strong></div><div class="row gride tab-background-white" id="main" ng-show="selectedTab.id == 1"><ul class="homeList"><li ng-if="(loggedInUserDetails.isOrganizationUser || loggedInUserDetails.isOrganizationUserMode) && menu.dashboardmenutab == 'HOME'" class="col-xs-4 col-sm-4 col-md-15 gride-box text-center" ng-repeat="menu in dynamicMenu | filter: filterMenu"><a href="" class="" ng-click="redirectTo($event, menu)"><div class="{{menu.iconcls}}"></div><div class="txt-cont">{{menu.name | translate}}</div></a></li><li ng-if="(!loggedInUserDetails.isOrganizationUser || !loggedInUserDetails.isOrganizationUserMode) && menu.dashboardmenutab == 'MY_RECORDS'" class="col-xs-4 col-sm-4 col-md-15 gride-box text-center" ng-repeat="menu in dynamicMenu | filter: filterMenu"><a href="" class="" ng-click="redirectTo($event, menu)"><div class="{{menu.iconcls}}"></div><div class="txt-cont">{{menu.name | translate}}</div></a></li></ul></div><div class="row gride tab-background-white" id="myTab" ng-show="selectedTab.id == 2"><ul class="homeList"><li class="col-xs-4 col-sm-4 col-md-15 gride-box text-center" ng-repeat="menu in dynamicMenu | filter: filterMenu"><a href="" class="" ng-click="redirectTo($event, menu)"><div class="{{menu.iconcls}}"></div><div class="txt-cont">{{menu.name | translate}}</div></a></li></ul></div><div class="row gride tab-background-white" id="statistics" ng-show="selectedTab.id == 3"><ul class="homeList"><li class="col-xs-4 col-sm-4 col-md-15 gride-box text-center" ng-repeat="menu in dynamicMenu | filter: filterMenu"><a href="" class="" ng-click="redirectTo($event, menu)"><div class="{{menu.iconcls}}"></div><div class="txt-cont">{{menu.name | translate}}</div></a></li></ul></div><div class="row gride tab-background-white" id="actions" ng-show="selectedTab.id == 4"><ul class="homeList"><li ng-if="!loggedInUserDetails.isOrganizationUser || !loggedInUserDetails.isOrganizationUserMode" class="col-xs-4 col-sm-4 col-md-15 gride-box text-center"><a href="{{jforumUrl}}.page"><div class="icon-cont interest-group-requests img-bg-70"></div><div class="txt-cont">{{'REQUEST_FOR_NEW_INTEREST_GROUP' | translate}}</div></a></li><li class="col-xs-4 col-sm-4 col-md-15 gride-box text-center" ng-repeat="menu in dynamicMenu | filter: filterMenu"><a href="" class="" ng-click="redirectTo($event, menu)"><div class="{{menu.iconcls}}"></div><div class="txt-cont">{{menu.name | translate}}</div></a></li></ul></div><div class="row gride tab-background-white" id="others" ng-show="selectedTab.id == 5"><ul class="homeList"><li class="col-xs-4 col-sm-4 col-md-15 gride-box text-center" ng-repeat="menu in dynamicMenu | filter: filterMenu"><a href="" class="" ng-click="redirectTo($event, menu)"><div class="{{menu.iconcls}}"></div><div class="txt-cont">{{menu.name | translate}}</div></a></li></ul></div></div><div class="gride-note"><br></div></div><div class="footer">&copy; {{'2015_COPYRIGHT_PARIPAL_ALL_RIGHTS_RESERVED' | translate}}</div><script>$("a[href='#top']").click(function() {
+        $(".pageScroll").animate({
+            scrollTop: 0
+        }, "slow");
+        return false;
+    });
+
+
+
+    function deselect(e) {
+        $('.pop').slideFadeToggle(function() {
+            e.removeClass('selected');
+        });
+    }
+
+    $(function() {
+        $('#contact').on('click', function() {
+            if ($(this).hasClass('selected')) {
+                deselect($(this));
+            } else {
+                $(this).addClass('selected');
+                $('.pop').slideFadeToggle();
+            }
+            return false;
+        });
+
+        $('.close').on('click', function() {
+            deselect($('#contact'));
+            return false;
+        });
+    });
+
+    $.fn.slideFadeToggle = function(easing, callback) {
+        return this.animate({
+            opacity: 'toggle',
+            height: 'toggle'
+        }, 'fast', easing, callback);
+    };
+
+
+    $(function() {
+        menu = $('nav ul');
+        $('#openup').on('click', function(e) {
+            e.preventDefault();
+            menu.slideToggle();
+        });
+        $(window).resize(function() {
+            var w = $(this).width();
+            if (w > 480 && menu.is(':hidden')) {
+                menu.removeAttr('style');
+            }
+        });
+        $('nav li').on('click', function(e) {
+            var w = $(window).width();
+            if (w < 480) {
+                menu.slideToggle();
+            }
+        });
+        $('.open-menu').height($(window).height());
+    });</script>

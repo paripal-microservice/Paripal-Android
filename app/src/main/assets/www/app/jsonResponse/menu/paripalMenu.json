@@ -1,0 +1,288 @@
+[
+    {
+        "id": "1",
+        "name": "ALL_CATEGORIES",
+        "iconcls": "fa-globe",
+        "children": [
+            {
+                "id": "2",
+                "name": "HOME",
+                "state": "home",
+                "iconcls": "fa-home",
+                "parentId": "1"
+            },
+            {
+                "id": "3",
+                "name": "ACCESS_CONTROL",
+                "iconcls": "fa-unlock",
+                "parentId": "1",
+                "children": [
+                    {
+                        "id": "40",
+                        "name": "USER_ROLE_LIST",
+                        "state": "rolelist",
+                        "parentId": "3"
+                    },
+                    {
+                        "id": "41",
+                        "name": "MANAGE_ROLE",
+                        "state": "managerole",
+                        "parentId": "3"
+                    },
+                    {
+                        "id": "42",
+                        "name": "USER_ROLE_HISTORY_LIST",
+                        "state": "userrolehistorylist",
+                        "parentId": "3"
+                    },
+                    {
+                        "id": "43",
+                        "name": "LINK_USER_ROLE",
+                        "state": "linkuserrole",
+                        "parentId": "3"
+                    },
+                    {
+                        "id": "44",
+                        "name": "USER_ROLE_PRIVILEGE_LIST",
+                        "state": "roleprivilegelist",
+                        "parentId": "3"
+                    },
+                    {
+                        "id": "45",
+                        "name": "MANAGE_ROLE_PRIVILEGE",
+                        "state": "manageroleprivilege",
+                        "parentId": "3"
+                    },
+                    {
+                        "id": "46",
+                        "name": "ROLE_STATICTICS",
+                        "state": "rolestatistics",
+                        "parentId": "3"
+                    }
+                ]
+            }, {
+                "id": "4",
+                "name": "DOCUMENT_MANAGEMENT",
+                "state": "documentManagement",
+                "iconcls": "fa-file",
+                "parentId": "1"
+            },
+            {
+                "id": "8",
+                "name": "RESOURCES",
+                "state": "resources",
+                "iconcls": "fa-th",
+                "parentId": "1",
+                "children": [
+                    {
+                        "id": "62",
+                        "name": "SEARCH_RESOURCES",
+                        "state": "resourcelist",
+                        "parentId": "8"
+                    },
+                    {
+                        "id": "63",
+                        "name": "MANAGE_RESOURCES",
+                        "state": "manageresource",
+                        "parentId": "8"
+                    }
+                ]
+            },
+            {
+                "id": "9",
+                "name": "USERS",
+                "state": "orglocuserlist",
+                "iconcls": "fa-users",
+                "parentId": "1"
+            },
+            {
+                "id": "10",
+                "name": "ORGANIZATIONS",
+                "parentId": "1",
+                "iconcls": "fa-sitemap",
+                "children": [
+                    {
+                        "id": "16",
+                        "name": "ORGANIZATION_BASIC_INFO",
+                        "state": "orglist",
+                        "parentId": "10"
+                    },
+                    {
+                        "id": "17",
+                        "name": "LOCATION_BASIC_INFO",
+                        "state": "orgloclist",
+                        "parentId": "10"
+                    },
+                    {
+                        "id": "22",
+                        "name": "EXPRESSION_OF_INTEREST",
+                        "state": "expressionlist",
+                        "parentId": "10"
+                    },
+                    {
+                        "id": "27",
+                        "name": "CLIENT",
+                        "state": "orglocclientlist",
+                        "parentId": "10"
+                     }, {
+                        "id": "28",
+                        "name": "PROFESSIONAL",
+                        "parentId": "10",
+                        "children": [
+                            {
+                                "id": "10_28",
+                                "name": "OTHER_ACTIONS",
+                                "parentId": "28",
+                                "children": [{
+                                    "id": "10_28_1",
+                                    "name": "HEALTH_PROFESSIONAL_SPECIALIZATIONS",
+                                    "state": "orghealthprofessionallist",
+                                    "parentId": "10_28"
+                                    }, {
+                                    "id": "10_28_2",
+                                    "name": "SUPPORT_SERVICE_PROFESSIONAL_SERVICE",
+                                    "state": "orgsupportserviceprofessionalcategorieslist",
+                                    "parentId": "10_28"
+                                    }, {
+                                    "id": "10_28_3",
+                                    "name": "DISEASE_STATISTICS_LINKED_TO_PROFESSIONALS",
+                                    "state": "followUpSettingsList",
+                                    "parentId": "10_28"
+                                    }, {
+                                    "id": "10_28_4",
+                                    "name": "DISEASE_STATISTICS",
+                                    "state": "followUpSettingsList",
+                                    "parentId": "10_28"
+                                    }, {
+                                    "id": "10_28_5",
+                                    "name": "PROFESSIONALS_SUMMARY ",
+                                    "state": "followUpSettingsList",
+                                    "parentId": "10_28"
+                                    }]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "14",
+                "name": "SERVICE_PROVIDERS",
+                "state": "serviceProviders",
+                "iconcls": "fa-ambulance",
+                "parentId": "1",
+                "children": [
+                    {
+                        "id": "30",
+                        "name": "PACKAGES",
+                        "state": "searchpackages",
+                        "iconcls": "fa-gift",
+                        "parentId": "14"
+                    },
+                    {
+                        "id": "31",
+                        "name": "PACKAGE_INCLUSION",
+                        "state": "packageinclusionlist",
+                        "iconcls": "fa-inbox",
+                        "parentId": "14"
+                    }
+                ]
+            },
+            {
+                "id": "17",
+                "name": "DATA_SETTING",
+                "state": "dataSettings",
+                "iconcls": "fa-link",
+                "parentId": "1",
+                "children": [
+                    {
+                        "id": "32",
+                        "name": "MEASUREMENT_INDICATORS",
+                        "state": "indicatorlist",
+                        "iconcls": "fa-tachometer",
+                        "parentId": "17"
+                    },
+                    {
+                        "id": "33",
+                        "name": "MEASUREMENT_GROUPS",
+                        "state": "grouplist",
+                        "iconcls": "fa-group",
+                        "parentId": "17"
+                    },
+                    {
+                        "id": "35",
+                        "name": "INDICATOR_CONDITIONS",
+                        "state": "indicatorconditionlist",
+                        "iconcls": "fa-heartbeat",
+                        "parentId": "17"
+                    },
+                    {
+                        "id": "36",
+                        "name": "DIAGNOSTIC_TEST",
+                        "state": "diagnostictestslist",
+                        "iconcls": "fa-user-md",
+                        "parentId": "17"
+                    },
+                    {
+                        "id": "37",
+                        "name": "TEST_GROUP",
+                        "state": "testgrouplist",
+                        "iconcls": "fa-map-signs",
+                        "parentId": "17"
+                    }
+                ]
+            },
+            {
+                "id": "16",
+                "name": "SETTING",
+                "iconcls": "fa fa-cog",
+                "parentId": "1",
+                "children": [
+                    {
+                        "id": "28",
+                        "name": "ID_GENERATOR",
+                        "state": "numbering",
+                        "iconcls": "fa fa-list-ol",
+                        "parentId": "16"
+                    },
+                    {
+                        "id": "29",
+                        "name": "STANDARD_MASTER",
+                        "state": "standardmasterlist",
+                        "iconcls": "fa fa-archive",
+                        "parentId": "16"
+                    }
+                ]
+            },
+            {
+                "id": "18",
+                "name": "MESSAGING",
+                "state": "messagingList",
+                "iconcls": "fa-users",
+                "parentId": "1"
+            },
+            {
+            	"id":"34",
+            	"name":"USER_ID_DOC",
+            	"iconcls": "fa fa-apple",
+            	"parentId": "1",
+            	"children": [
+            	 {
+                        "id": "38",
+                        "name": "SEARCH_USER_ID_DOC",
+                        "state": "userIdDocumentList",
+                        "iconcls": "fa fa-apple",
+                        "parentId": "34"
+                    },
+                    {
+                        "id": "39",
+                        "name": "MANAGE_USER_ID_DOC",
+                        "state": "manageUserIdDoc",
+                        "iconcls": "fa fa-apple",
+                        "parentId": "34"
+                    }
+                ]
+            
+            }
+        ]
+    }
+]

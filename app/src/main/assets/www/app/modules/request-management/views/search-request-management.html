@@ -1,0 +1,170 @@
+<div ng-class="{'posRelative':orgLocListPageSpinner}"><div class="pageTitle"><span>{{'REQUEST_LIST'|translate}}</span><help-directive help-id="REQUEST_LIST" class="divContainer"></help-directive></div><div class="filterPanel filter"><uib-accordion><uib-accordion-group is-open="status.open"><uib-accordion-heading><i class="fa fa-filter"></i> <span>&nbsp;{{filterName}}</span> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i></uib-accordion-heading><form name="orglist" novalidate="novalidate" class="form-horizontal panel-body-top" id="orglist" autocomplete="off"><div class="col-sm-12 col-md-12 col-lg-12"><div class="row"><div class="col-xs-12 col-md-4 col-lg-4"><md-input-container><label>{{'SERVICE_TYPE'|translate}}</label><input type="text" name="treatmentType" ng-model="requestManagement.treatmentType" ng-disabled="viewmode" autocomplete="off" uib-typeahead="treatmentType as treatmentType.value for treatmentType in getTreatmentType($viewValue)" typeahead-loading="loading" typeahead-min-length="getSmartSearchMinLength('serviceTypeMinLength')"><div ng-messages="orglist.treatmentType.$error"><div ng-message="required">{{'REQUIRED' |translate}}</div></div></md-input-container></div><div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><md-input-container class="md-block md-icon-right"><label>{{'START_DATE'|translate}}</label><input datepicker class="pointer" till-max-date="minDate" ng-model="requestManagement.requestDate" ng-disabled="viewmode"><md-icon class="datepickerIcon ng-isolate-scope material-icons"></md-icon></md-input-container></div><div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><md-input-container class="md-block md-icon-right"><label>{{'END_DATE'|translate}}</label><input datepicker class="pointer" from-min-date="requestManagement.requestDate" till-max-date="minDate" ng-model="requestManagement.expiryDate" ng-disabled="viewmode"><md-icon class="datepickerIcon ng-isolate-scope material-icons"></md-icon></md-input-container></div></div><div class="row"><div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 selectDropDown"><md-input-container><label>{{'REQ_REQ_ID' | translate}}<span style="color:red"></span></label><input name="reqId" id="reqId" ng-model="requestManagement.requestId"></md-input-container></div><div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 selectDropDown"><md-input-container><label>{{'MOBILE_NUMBER'|translate}}</label><input name="cellnumber" ng-model="requestManagement.cell"></md-input-container></div><div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 selectDropDown"><md-input-container><label>{{'REQUEST_STATUS' | translate}}</label><md-select multiple="multiple" name="requestStatus" id="requestStatus" ng-model="requestManagement.requestStatus"><md-option ng-repeat="requestStatus in requestStatuses" id="requestStatus" name="requestStatus" ng-value="requestStatus">{{requestStatus.value}}</md-option></md-select></md-input-container></div></div><div class="row"><div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" selectdropdown><md-input-container><label>{{'REQUEST_TYPE'|translate}}</label><md-select multiple="multiple" name="requestType" id="requestType" ng-model="requestManagement.requestType"><md-option ng-repeat="requestType in requestTypes" ng-value="requestType" ng-selected="requestTypeCode == requestType.code?true:false">{{requestType.value}}</md-option></md-select></md-input-container></div><div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><md-input-container><label>{{'REQUESTER'|translate}}</label><input type="text" ng-model="requestManagement.requestInitiator" name="user" id="user" autocomplete="off" uib-typeahead="users as users.value for users in getUserNamesForRoleHistory($viewValue)" typeahead-loading="loading" typeahead-min-length="3"></md-input-container></div><div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><md-radio-group ng-model="requestManagement.isLead"><div class="col-sm-12 col-md-3 col-lg-3"><md-radio-button ng-value="true">{{'IS_LEAD'|translate}}</md-radio-button></div><div class="col-sm-12 col-md-3 col-lg-3"><md-radio-button ng-value="false">{{'ALL'|translate}}</md-radio-button></div></md-radio-group></div></div><div class="row"><div class="col-sm-12 col-md-4 col-lg-4"><div class="radio_Check_box margin-t-10"><md-checkbox ng-model="requestManagement.initiator"><span>{{'IS_A_SUBSCRIBER'|translate}}</span></md-checkbox></div></div><div class="col-sm-12 col-md-4 col-lg-4"><div class="radio_Check_box margin-t-10"><md-checkbox ng-model="requestManagement.notSubscriber"><span>{{'IS_NOT_A_SUBSCRIBER'|translate}}</span></md-checkbox></div></div><div class="col-sm-12 col-md-4 col-lg-4"><div class="radio_Check_box margin-t-10"><md-checkbox ng-model="requestManagement.forNonUser" ng-change="changeAlternatives()" ng-click="setSuggestUser(whetherActiveField1,alternatives.medication1,alternatives.medicationVariant1,alternatives.medicationVariant1UnitCost);$event.stopPropagation()"><span>{{'IS_A_NON_PARIPAL_USER'|translate}}</span></md-checkbox></div></div></div><div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 textAlign-R wizardFooter"><md-button type="reset" ng-click="clear()" class="md-raised">{{"RESET"|translate}}</md-button><md-button class="md-raised md-warn" type="submit" ng-click="getRequestList(requestManagement)" type="submit">{{"APPLY"|translate}}</md-button></div></div></div></form></uib-accordion-group></uib-accordion></div><div class="row padding-b-10 padding-t-20"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><md-button type="button" class="md-raised md-warn" check-permission feature-privilege="{{restrictAdd?false:featurePrivilegeConstants.REQUEST_LIST_ADD}}" ng-click="requestForHomeVisit()"><i class="fa fa-plus"></i> {{'ADD_NEW' | translate}}</md-button><md-button type="button" class="md-raised md-warn" check-permission feature-privilege="{{featurePrivilegeConstants.REQUEST_DOWNLOAD}}" ng-click="createRequestDownload()"><i class="fa fa-download"></i>{{'DOWNLOAD' | translate}}</md-button><div class="pull-right"><md-menu><md-button type="button" class="md-raised" ng-click="$mdOpenMenu($event)">{{'SHOW'|translate}} {{itemPerPage}}</md-button><md-menu-content width="3" ng-init="maxRecordsAr = [10,25,50,100]"><md-menu-item ng-repeat="item in maxRecordsAr"><md-button ng-click="setMaxRecords(item)"><span md-menu-align-target>{{'SHOW'|translate}} {{item}} </span></md-button></md-menu-item></md-menu-content></md-menu></div></div></div><div class="divtable accordion-xs"><div ng-repeat="requestManagement in requestList" class="oddEven"><div class="tr"><div class="td firstnames accordion-xs-toggle"><img class="mobilePadding" src="app/images/user.jpg" height="50px" width="50px" id="logo"><br>{{requestManagement.initiator.value}}</div><div class="accordion-xs-collapse"><div class="inner"><div class="td lastnames1">{{requestManagement.requestId}} &nbsp;<a class="pointer" ng-if="(!requestManagement.isIndividualCreated) && (requestManagement.requestsType.code=='REQ_HOME_VISIT'||requestManagement.requestsType.code=='REQ_OTHER_REQUEST' || requestManagement.requestsType.code=='REQ_ONLINE_ADVICE')" check-permission feature-privilege="{{featurePrivilegeConstants.REQUEST_LIST_EDIT}}" ng-hide="requestManagement.requestStatus.code=='REQ_STS_COMPLETE'" ng-click="manageRequest(requestManagement.id,'edit',$index)"><i class="fa fa-pencil IconSet"></i><md-tooltip>{{"EDIT" | translate}}</md-tooltip></a>&nbsp;<a class="pointer" ng-click="manageRequest(requestManagement.id,'view')"><i class="fa fa-eye IconSet"></i><md-tooltip>{{"VIEW" | translate}}</md-tooltip></a>&nbsp;<a class="pointer" ng-click="respondToReq(requestManagement.id)" check-permission feature-privilege="{{requestManagement.requestsType.code =='REQ_MEDICINE_AVAILABILITY'? featurePrivilegeConstants.RESPOND_TO_REQ_MED_AVAILABILITY :featurePrivilegeConstants.RESPOND_TO_REQUEST_ADD}}" ng-hide="(requestManagement.requestStatus.value=='Request Rejected')||(requestManagement.requestStatus.code=='REQ_STS_COMPLETE')||(!requestManagement.isIndividualCreated)||(requestManagement.requestStatus.value =='Cancel Request')" ng-if="(requestManagement.requestStatus.value!='Request Rejected') || (requestManagement.requestStatus.code!='REQ_STS_COMPLETE') ||(!requestManagement.isIndividualCreated)"><i class="fa fa-reply IconSet" aria-hidden="true"></i><md-tooltip>{{"RESPOND_TO_REQUEST" | translate}}</md-tooltip></a><br><i ng-if="(!requestManagement.isIndividualCreated && requestManagement.isLead)||(requestManagement.isIndividualCreated && requestManagement.isLead)" class="fa fa-check-square-o change-green IconSet" aria-hidden="true"></i><span ng-if="(!requestManagement.isIndividualCreated && requestManagement.isLead)||(requestManagement.isIndividualCreated && requestManagement.isLead)" class="change-green">{{'IS_A_LEAD' | translate}}</span> <i ng-if="(!requestManagement.isIndividualCreated && !requestManagement.isLead)||(requestManagement.isIndividualCreated && !requestManagement.isLead)" class="fa fa-square-o change-red IconSet" aria-hidden="true"></i><span ng-if="(!requestManagement.isIndividualCreated && !requestManagement.isLead)||(requestManagement.isIndividualCreated && !requestManagement.isLead)" class="change-red">{{'NOT_A_LEAD' | translate}}</span><br>{{requestManagement.requestDate | timestampToDate}}</div><div class="td lastnames2">{{requestManagement.requestsType.value}}<br>{{(requestManagement.treatmentType && requestManagement.treatmentType.value) ? requestManagement.treatmentType.value : ((requestManagement.treatmentType && requestManagement.treatmentType.value ) ? requestManagement.treatmentType.value : '')}}<br>{{requestManagement.healthProfessional.value}}&nbsp;<a class="pointer" ng-if="(!requestManagement.healthProfessional.id && requestManagement.isConfirmed)||(requestManagement.healthProfessional.id && requestManagement.isConfirmed && !requestManagement.schedule.id && !requestManagement.isIndividualCreated) ||(requestManagement.requestsType.code =='REQ_OTHER_REQUEST'&& loginDetails.isOrganizationUser && locationCategory.code=='SERVICE_PROVIDER_HO')" check-permission feature-privilege="{{featurePrivilegeConstants.REQUEST_LIST_ADD}}" ng-click="selectHealthProfessional(requestManagement)"><i class="fa fa-user-md IconSet" aria-hidden="true"></i><md-tooltip>{{"SELECT_PROFESSIONAL" | translate}}</md-tooltip></a></div><div class="td lastnames3"><i class="{{checkOrganizationLocationAccess(requestManagement.organization.id)?'fa fa-check change-green IconSet':'fa fa-times change-red IconSet'}}" aria-hidden="true"></i><span class="{{checkOrganizationLocationAccess(requestManagement.organization.id)?' change-green':'change-red'}}">{{checkOrganizationLocationAccess(requestManagement.organization.id)?'ORG_SELECTED':'ORG_SELECTED_FOR_OTHERS' | translate}}</span><br>{{requestManagement.requestStatus.value}}<br>{{requestManagement.totalFulfilled}}/{{requestManagement.totalFulfillmentCount}} <a class="pointer" ng-click="manageRequest(requestManagement.id,'fulfilment')" check-permission feature-privilege="{{requestManagement.requestsType.code =='REQ_MEDICINE_AVAILABILITY'? featurePrivilegeConstants.RESPOND_TO_REQ_MED_AVAILABILITY : (requestManagement.requestsType.code =='REQ_OTHER_REQUEST'? featurePrivilegeConstants.RESPOND_TO_REQ_OTHER :featurePrivilegeConstants.RESPOND_TO_REQUEST_ADD)}}" ng-hide="!(checkOrganizationLocationAccess(requestManagement.organization.id)) || (requestManagement.requestStatus.value=='Request Rejected') ||(requestManagement.requestStatus.value=='Cancel Request')||(requestManagement.requestStatus.code =='REQ_STS_REQUESTED') ||(requestManagement.requestsType.code =='REQ_GENERAL_ENQUIRY')">{{(requestManagement.requestsType.code=='REQ_HOME_VISIT' || requestManagement.requestsType.code=='REQ_ONLINE_ADVICE')?"APPOINTMENTS":"VIEW_FULFILMENT" | translate}}</a></div><div class="td lastnames4">{{"Address"|translate}}:&nbsp;<a class="pointer" ng-click="locationPopup(requestManagement.address)"><i class="fa fa-location-arrow IconSet" aria-hidden="true"></i></a>{{requestManagement.address}}</div><div class="td lastnames5"><a class="pointer" ng-click="makePrescription($event,requestManagement.organization.id,requestManagement.initiator.id,requestManagement.disease.id)" ng-hide=" !checkEditPermission(requestManagement.healthProfessional.id)||(requestManagement.requestsType.code =='REQ_OTHER_REQUEST') || (requestManagement.requestsType.code =='REQ_MEDICAL_CERTIFICATE') || (requestManagement.requestsType.code =='REQ_MEDICINE_AVAILABILITY')|| (requestManagement.requestsType.code =='REQ_URGENT_CLARIFICATION')||(requestManagement.requestsType.code =='REQ_ONLINE_ADVICE')||(requestManagement.requestStatus.code =='REQ_STS_REQUESTED')||(requestManagement.requestStatus.code =='REQ_STS_COMPLETE')"><i class="fa fa-file-powerpoint-o IconSet" aria-hidden="true"></i><md-tooltip>{{"MAKE_PRESCRIPTIONS" | translate}}</md-tooltip></a>&nbsp;<a class="pointer" ng-if="requestManagement.requestStatus.code =='REQ_STS_FULFILMENT_STARTED'" ng-click="markAsFulfilled(requestManagement.id)"><i class="fa fa-file-text-o IconSet" aria-hidden="true"></i><md-tooltip>{{"MARK_AS_FULFILED" | translate}}</md-tooltip></a>&nbsp;<a class="pointer" ng-hide="requestManagement.requestStatus.code=='REQ_STS_COMPLETE'" ng-click="msgSending(requestManagement)"><i class="fa fa-comments IconSet" aria-hidden="true"></i><md-tooltip>{{"CONVERSE_USER" | translate}}</md-tooltip></a>&nbsp; <a class="pointer" ng-if="!requestManagement.isConfirmed && !requestManagement.isIndividualCreated" check-permission feature-privilege="{{featurePrivilegeConstants.REQUEST_LIST_ADD}}" ng-click="markAsConfirmed(requestManagement)"><i class="fa fa-check IconSet"></i><md-tooltip>{{"MARK_AS_CONFIRMED" | translate}}</md-tooltip></a>&nbsp;<a class="pointer" ng-show="(requestManagement.requestsType.code=='REQ_HOME_VISIT'||requestManagement.requestsType.code=='REQ_ONLINE_ADVICE')" ng-if="(requestManagement.requestStatus.code=='REQ_STS_SELECTED' &&requestManagement.healthProfessional ) ||(requestManagement.requestStatus.code=='REQ_STS_FULFILMENT_STARTED') ||(requestManagement.requestStatus.code=='REQ_STS_REQUEST_FULFILED')" ng-hide="(requestManagement.requestStatus.value=='Request Rejected'|| requestManagement.requestsType.code=='REQ_MEDICINE_AVAILABILITY' ||requestManagement.requestsType.code=='REQ_MEDICAL_CERTIFICATE' || requestManagement.requestStatus.code=='REQ_STS_REQUEST_FULFILED')" ng-click="setAppointment(requestManagement)"><i class="fa fa-calendar IconSet" aria-hidden="true"></i><md-tooltip ng-if="requestManagement.requestsType.code=='REQ_OTHER_REQUEST' && locationCategory.code=='SERVICE_PROVIDER_HO'">{{"RECORD_WALK_IN" | translate}}</md-tooltip><md-tooltip ng-if="!(requestManagement.requestsType.code=='REQ_OTHER_REQUEST' && locationCategory.code=='SERVICE_PROVIDER_HO')">{{"DEFINE_VISIT_SCHEDULE" | translate}}</md-tooltip></a>&nbsp;<a class="pointer" href="" ng-if="requestManagement.requestsType.code=='REQ_OTHER_REQUEST' || requestManagement.requestsType.code=='REQ_MEDICAL_CERTIFICATE'" ng-click="goToUploadDownload(requestManagement)"><i class="fa fa-upload" aria-hidden="true"></i><md-tooltip>{{"UPLOAD_DOWNLOAD" | translate}}</md-tooltip></a><br><a class="pointer" ng-if="requestManagement.nextAppt"><i class="fa fa-chevron-circle-right IconSet" aria-hidden="true"></i><md-tooltip>{{'NEXT_APP_DATE' |translate}}</md-tooltip></a>{{requestManagement.nextAppt |timestampToDate }}<br><a class="pointer" ng-if="requestManagement.requestsType.code=='REQ_OTHER_REQUEST'&& locationCategory.code=='SERVICE_PROVIDER_HO'" ng-click="addEditAppointmentSummary(requestManagement)">{{'Capture Summary' |translate}}</a></div></div></div></div></div><div ng-show="totalItems > 0"><div class="pageRecord"><span>{{'SHOWING' | translate}} {{pagingInfo.startRecord + '-' + pagingInfo.endRecord + ' of ' + totalItems + ' items'}}</span></div><div class="text-center"><uib-pagination max-size="4" total-items="totalItems" ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()" boundary-links="true" class="pagination-md" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination></div></div></div><style>md-checkbox .md-container {
+        top: 65%;
+        left: 0;
+    }
+
+    .change-green{
+        color:green;
+    }
+    .change-red{
+        color:red;
+    }
+
+.firstnames{width: 13%; word-wrap: break-word;}
+.lastnames1{width: 15%; word-wrap: break-word;}
+.lastnames2{width: 15%; word-wrap: break-word;}
+.lastnames3{width: 20%; word-wrap: break-word;}
+.lastnames4{width: 22%; word-wrap: break-word;}
+.lastnames5{width: 15%; word-wrap: break-word;}
+
+
+
+ .divtable .tr {
+  overflow: hidden;
+  clear: both;
+  line-height: 20px;
+  
+}
+
+.divtable .oddEven:nth-child(odd) {
+    background-color: #f1f1f1 !important;
+}
+.divtable .oddEven:nth-child(even) {
+    background-color: transparent !important;
+}
+
+.divtable .tr:hover{
+    background-color: #DEEBF6;
+}
+
+.divtable .th,
+.divtable .td {
+  padding: 5px 10px;
+  float: left;
+}
+
+.divtable .th { font-weight: bold; }
+
+.firstname { width: 40%; }
+
+.lastname { width: 30%; }
+
+.username { width: 30%; }
+
+
+ @media (max-width: 767px) {
+
+.accordion-xs .headings { display: none; }
+
+.accordion-xs .tr { border-bottom-color: #fff; border-bottom:1px solid #ccc}
+
+.accordion-xs .th,
+ .accordion-xs .td {
+  float: none;
+  width: auto;
+  padding: 0;
+}
+
+.accordion-xs .accordion-xs-toggle {
+  color: #555;
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+.accordion-xs .accordion-xs-toggle:hover { background-color: #f1f1f1; }
+
+.accordion-xs .accordion-xs-toggle:after {
+  content: '\2b';
+  float: right;
+}
+
+.accordion-xs .accordion-xs-toggle.collapsed:after { content: '\2212'; float: left;}
+     
+.accordion-xs-collapse .inner { padding: 10px; }
+
+.accordion-xs-collapse .td:before { font-weight: bold; }
+
+
+.accordion-xs .accordion-xs-toggle:after {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  float: left;
+  margin-right: 10px;
+  background-color: #3acce1;
+  border-radius: 50%;
+  padding: 3px;
+  font-size: 10px;
+}
+.lastnames1{ float:left !important; width:50% !important; margin-bottom: 5px !important;}
+.lastnames2{ float:left !important; width:50% !important; margin-bottom: 5px !important;}
+.lastnames3{ float:left !important; width:50% !important; margin-bottom: 5px !important;} 
+.lastnames4{ float:left !important; width:50% !important; margin-bottom: 5px !important;}
+.lastnames5{ float:left !important; width:50% !important; margin-bottom: 5px !important;}
+.IconSet {
+    font-size: 18px !important;
+}
+.mobilePadding{
+    margin-left: 27px;
+}
+}
+
+@media only screen and (max-width: 500px)  {
+.lastnames1{ float:left; width:50%;}
+.lastnames2{ float:left; width:50%;}
+.lastnames3{ float:left; width:50%;}
+.lastnames4{ float:left; width:50%;}
+.lastnames5{ float:left; width:50%;}
+
+}</style><script>$(function() {    
+    var isXS = false,
+        $accordionXSCollapse = $('.accordion-xs-collapse');
+
+    // Window resize event (debounced)
+    var timer;
+    $(window).resize(function () {
+        if (timer) { clearTimeout(timer); }
+        timer = setTimeout(function () {
+            isXS = Modernizr.mq('only screen and (max-width: 767px)');
+            
+            // Add/remove collapse class as needed
+            if (isXS) {
+                $accordionXSCollapse.addClass('collapse');               
+            } else {
+                $accordionXSCollapse.removeClass('collapse');
+            }
+        }, 100);
+    }).trigger('resize'); //trigger window resize on pageload    
+    
+    // Initialise the Bootstrap Collapse
+    $accordionXSCollapse.each(function () {
+        $(this).collapse({ toggle: false });
+    });      
+    
+    // Accordion toggle click event (live)
+    $(document).on('click', '.accordion-xs-toggle', function (e) {
+        e.preventDefault();
+        
+        var $thisToggle = $(this),
+            $targetRow = $thisToggle.parent('.tr'),
+            $targetCollapse = $targetRow.find('.accordion-xs-collapse');            
+        
+        if (isXS && $targetCollapse.length) { 
+            var $siblingRow = $targetRow.siblings('.tr'),
+                $siblingToggle = $siblingRow.find('.accordion-xs-toggle'),
+                $siblingCollapse = $siblingRow.find('.accordion-xs-collapse');
+            
+            $targetCollapse.collapse('toggle'); //toggle this collapse
+            $siblingCollapse.collapse('hide'); //close siblings
+            
+            $thisToggle.toggleClass('collapsed'); //class used for icon marker
+            $siblingToggle.removeClass('collapsed'); //remove sibling marker class
+        }
+    });
+});</script></div>

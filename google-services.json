@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "656558094813",
+    "firebase_url": "https://paripal-e56bc.firebaseio.com",
+    "project_id": "paripal-e56bc",
+    "storage_bucket": "paripal-e56bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:656558094813:android:2869ac88e18c4819",
+        "android_client_info": {
+          "package_name": "com.paripal.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "656558094813-gurhinthkui6pseufh6doibpdvgpvd22.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCHu03W3LtCqJzSZVrtdyy8w3dKAagp18"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,65 @@
+{
+    "defaultMinLength": 3,
+    "defaultMinLength0": 0,
+    "uiSideMinLength": 0,
+
+    "userMinLength": 3,
+    "orgLocMinLength": 3,
+    "orgMinLength": 3,
+
+    "entityNameMinLength": 3,
+    "clientSearchMinLength": 0,
+    "eventNameMinLength": 3,
+    "allotedToForwardedToMinLength": 3,
+    "onBehalfOfDoctorMinLength": 3,
+    "enumComboMinLength": 0,
+    "allocatedToMinLength": 3,
+    "forwardedToMinLength": 3,
+    "onBehalfOfMinLength": 3,
+    "dobMinLength": 3,
+    "benchmarkChartMinLength": 3,
+    "documentTypeMinLength": 0,
+    "documentIdMinLength": 0,
+    "serviceGroupMinLength": 0,
+    "currencyMinLength": 0,
+
+    "cityMinLength": 3,
+    "countryMinLength": 3,
+    "DistrictMinLength": 3,
+    "stateMinLength": 3,
+
+    "complaintMinLength": 3,
+    "closureReasonMinLength": 3,
+    "feeHeadMinLength": 3,
+    "serviceTypeMinLength": 3,
+
+    "categoryMibLength": 3,
+    "subCategoryMibLength": 3,
+
+    "medicationMinLength": 3,
+    "medicationSideEffectMinLength": 3,
+
+    "diseaseMinLength": 3,
+    "diseaseVariantMinLength": 3,
+    "diseaseIncidentMinLength": 3,
+
+    "symptomMinLength": 3,
+    "pharmacyMinLength": 3,
+    "treatmentTypeMinLength": 3,
+    "pickListMinLength": 3,
+    "sessionNameMinLength": 3,
+
+    "diagnosticTestMinLength": 3,
+    "diagnosticTestGroupMinLength": 3,
+
+    "measurementGroupMinLength": 3,
+    "indicatorNameMinLength": 3,
+    "benchMarkChartMinLength": 3,
+    "privilegeMinLength": 0,
+    "roleNameMinLength": 3,
+    "specializationMinLength": 0,
+    "alternativesMinLength": 3,
+    "packageMinLength": 0,
+
+    "imageTypeMinLength": 2
+}

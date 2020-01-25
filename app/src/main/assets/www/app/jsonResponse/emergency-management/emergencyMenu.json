@@ -1,0 +1,127 @@
+[{
+    "name": "AUTOMATE_AMBULANCE_HOSPITAL",
+    "href": "emergencyautomate",
+    "iconClass": "fa ambulanceListSubIcon",
+    "whetherTransIdReq": false,
+    "isAccessToOrgUser": true,
+    "isAccessToIndUser": true
+                }, {
+    "name": "AMBULANCE_LIST",
+    "href": "ambulancelist",
+    "iconClass": "fa ambulanceListSubIcon",
+    "whetherTransIdReq": false,
+    "isAccessToOrgUser": true,
+    "isAccessToIndUser": true,
+    "permission": "ambulanceList_view",
+    "subscriptionRequired": "AMBULANCE_PROVIDER"
+                }, {
+    "name": "CALL_AMBULANCE",
+    "href": "callambulance",
+    "iconClass": "fa callAmbulanceSubIcon",
+    "whetherTransIdReq": false,
+    "isAccessToOrgUser": true,
+    "isAccessToIndUser": true
+                }, {
+    "name": "AMBULANCE_REQUEST",
+    "href": "ambulancerequest",
+    "iconClass": "fa ambulanceRequestSubIcon",
+    "whetherTransIdReq": false,
+    "isAccessToOrgUser": true,
+    "isAccessToIndUser": true,
+    "permission": "ambulanceRequest_view",
+    "subscriptionRequired": "AMBULANCE_PROVIDER"
+                }, {
+    "name": "FIRST_AID",
+    "href": "firstaidlist",
+    "iconClass": "fa firstAidSubIcon",
+    "whetherTransIdReq": false,
+    "isAccessToOrgUser": true,
+    "isAccessToIndUser": true
+                }, {
+    "name": "SEARCH_HOSPITAL",
+    "href": "search-hospitals",
+    "iconClass": "fa searchHospitalSubIcon",
+    "whetherTransIdReq": false,
+    "isAccessToOrgUser": true,
+    "isAccessToIndUser": true
+                }, {
+    "name": "IDENTIFY_PATIENT",
+    "href": "userIdentifyList",
+    "iconClass": "fa identifyPatientSubIcon",
+    "params": {
+        "callingScreen": "affectedPerson"
+    },
+    "whetherTransIdReq": false,
+    "isAccessToOrgUser": true,
+    "isAccessToIndUser": true
+                }, {
+    "name": "INTIMATE_STAKEHOLDERS",
+    "href": "intimatestakeholders",
+    "iconClass": "fa intimateStakeholdersSubIcon",
+    "whetherTransIdReq": true,
+    "isAccessToOrgUser": true,
+    "isAccessToIndUser": true
+                }, {
+    "name": "REGISTER_WITH_HOSPITAL",
+    "href": "emergencytransaction",
+    "iconClass": "fa registerHospitalSubIcon",
+    "whetherTransIdReq": false,
+    "isAccessToOrgUser": true,
+    "isAccessToIndUser": true
+                }, {
+    "name": "UPLOAD_VIDEO_PICTURE",
+    "href": "emergencyuploadlist",
+    "iconClass": "fa uploadVideoSubIcon",
+    "whetherTransIdReq": true,
+    "isAccessToOrgUser": true,
+    "isAccessToIndUser": true
+                }, {
+    "name": "CONSULT_EMERGENCY_DOCTOR",
+    "href": "#",
+    "iconClass": "fa consultDoctorSubIcon",
+    "whetherTransIdReq": true,
+    "isAccessToOrgUser": true,
+    "isAccessToIndUser": true,
+    "permission": "consult_emergency_doctor_view",
+    "subscriptionRequired": "EMERGENCY_MGMT_SERVICE"
+                }, {
+    "name": "EMERGENCY_CALL_MANAGEMENT_LIST",
+    "href": "emergencycallmanagementlist",
+    "iconClass": "fa emergencyCallMgmtListSubIcon",
+    "whetherTransIdReq": false,
+    "isAccessToOrgUser": true,
+    "isAccessToIndUser": true,
+    "permission": "emergencyCallMgntList_view",
+    "subscriptionRequired": "EMERGENCY_MGMT_SERVICE"
+                }, {
+    "name": "NEW_DIAGNOSTIC_TEST",
+    "href": "usertestlist",
+    "iconClass": "fa newDiagnoticsTestSubIcon",
+    "whetherTransIdReq": true,
+    "isAccessToOrgUser": true,
+    "isAccessToIndUser": true
+                }, {
+    "name": "EMERGENCY_REQUESTS",
+    "href": "emergencyrequests",
+    "iconClass": "fa emergencyRequestSubIcon",
+    "whetherTransIdReq": false,
+    "isAccessToOrgUser": true,
+    "isAccessToIndUser": false,
+    "permission": "emergency_requests_view"
+                }, {
+    "name": "INTIMATION_LIST",
+    "href": "intimationlist",
+    "iconClass": "fa intimationListSubIcon",
+    "whetherTransIdReq": false,
+    "isAccessToOrgUser": true,
+    "isAccessToIndUser": true,
+    "permission": "intimationList_view",
+    "subscriptionRequired": "EMERGENCY_MGMT_SERVICE"
+                }, {
+    "name": "MANAGE_AUTO_EMERGENCY",
+    "href": "emergencyrequeststatus",
+    "iconClass": "fa ambulanceListSubIcon",
+    "whetherTransIdReq": false,
+    "isAccessToOrgUser": true,
+    "isAccessToIndUser": true
+                }]

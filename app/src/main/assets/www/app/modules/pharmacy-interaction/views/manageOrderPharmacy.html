@@ -1,0 +1,184 @@
+<div class="pageTitle"><span>{{'PHARMACY_ORDER'|translate}}</span><help-directive help-id="PHARMACY_ORDER" class="divContainer"></help-directive></div><div class="stepwizard"><div class="stepwizard-row setup-panel"><div class="stepwizard-step"><a href="#step-1" type="button" class="btn btn-primary btn-circle"><i class="fa fa-medkit" aria-hidden="true"></i></a></div></div></div><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 panelBorder padding-0 wizard" ng-class="{'posRelative':addOrgLocSpinner}"><spinner name="addOrgLocSpinner" img-src="{{pageLoaderImg}}" show="addOrgLocSpinner"></spinner><form name="pharmacyorder" id="pharmacyorder" method="post" class="form-horizontal" autocomplete="off" novalidate><div class="col-xs-12"><h3>{{'PHARMACY_NAME'|translate}}</h3><div class="row"><div class="col-sm-12 col-md-6 col-lg-6"><md-input-container><spinner name="userNameAutoCmp" img-src="{{autoCompletLoaderImg}}" show="userNameAutoCmpLoading" is-auto-complete="true"></spinner><label>{{'ORDER_NO'|translate}}<span class="mandatoryStar">*</span></label><input ng-model="pharmacyOrder.orderId" name="orderId" id="orderId" ng-disabled="true"></md-input-container></div><div class="col-sm-12 col-md-6 col-lg-6"><md-input-container class="md-block md-icon-right"><label>{{'DATE'|translate}}<span class="mandatoryStar">*</span></label><input datepicker class="pointer" from-min-date="minDate" ng-model="pharmacyOrder.orderDate" ng-disabled="true" required><md-icon class="datepickerIcon ng-isolate-scope material-icons"></md-icon><div ng-messages="pharmacyorder.orderDate.$error"><div ng-message="required">{{'REQUIRED' |translate}}</div></div></md-input-container></div></div><div class="row"><div class="col-sm-12 col-md-6 col-lg-6"><md-input-container><spinner name="onBehalfOfAutoCmp" img-src="{{autoCompletLoaderImg}}" show="userNameAutoCmpLoading" is-auto-complete="true"></spinner><label>{{'REQ_ON_BEHALF_OF'|translate}}<span class="mandatoryStar">*</span></label><input ng-model="pharmacyOrder.onBehalfOf" ng-disabled="viewMode || disableMode" name="userName" id="userName" autocomplete="off" uib-typeahead="onBehalfOf as onBehalfOf.value for onBehalfOf in getUserNamesForRoleHistory($viewValue)" typeahead-loading="loading" typeahead-min-length="getSmartSearchMinLength('orgMinLength')" required><div ng-messages="pharmacyorder.onBehalfOf.$error"><div ng-message="required">{{'REQUIRED' |translate}}</div></div></md-input-container></div><div class="col-sm-12 col-md-6 col-lg-6"><md-input-container><spinner name="onBehalfOfAutoCmp" img-src="{{autoCompletLoaderImg}}" show="userNameAutoCmpLoading" is-auto-complete="true"></spinner><label>{{'PHARMACY'|translate}}<span class="mandatoryStar">*</span></label><input ng-model="pharmacyOrder.pharmacy" ng-disabled="viewMode || disableMode ||reqplace" name="pharmacy" id="pharmacy" autocomplete="off" uib-typeahead="pharmacy as pharmacy.value for pharmacy in getPharmacy($viewValue)" typeahead-loading="loading" typeahead-min-length="getSmartSearchMinLength('pharmacyMinLength')" required><div ng-messages="pharmacyorder.pharmacy.$error" required><div ng-message="required">{{'REQUIRED' |translate}}</div></div></md-input-container></div></div><div class="row"><div class="col-sm-12 col-md-6 col-lg-6"><md-input-container><label>{{'SYMPTOM' | translate}}</label><input ng-disabled="viewMode || disableMode" ng-model="pharmacyOrder.symptom" name="symptom" ng-maxlength="250" id="autocompleteFieldOrg" autocomplete="off" uib-typeahead="symptom as symptom.name for symptom in getSymptom($viewValue)" typeahead-min-length="3" typeahead-min-length="getSmartSearchMinLength('symptomMinLength')" typeahead-on-select="selectChangedOrg($item, $model, $label);" ng-blur="validateValue(orgLocValues.organization,'organization')" ng-required="requiredOrgValue"><div ng-messages="searchForm.autocompleteFieldOrg.$error"><div ng-message="required">{{'REQUIRED' |translate}}</div><div ng-message="maxlength">{{'MAX_LENGTH' |translate}}</div><div ng-message="minlength">{{'MIN_LENGTH'|translate}}</div></div></md-input-container></div><div class="col-sm-12 col-md-6 col-lg-6"><md-input-container><label>{{'DISEASE' | translate}}</label><input ng-disabled="viewMode || disableMode" ng-model="pharmacyOrder.disease" name="disease" ng-maxlength="50" id="autocompleteFieldOrg" autocomplete="off" uib-typeahead="disease as disease.value for disease in getDisease($viewValue)" typeahead-min-length="getSmartSearchMinLength('diseaseMinLength')" typeahead-on-select="selectChangedOrg($item, $model, $label);" ng-blur="validateValue(orgLocValues.organization,'organization')" ng-required="requiredOrgValue"><div ng-messages="searchForm.autocompleteFieldOrg.$error"><div ng-message="required">{{'REQUIRED' |translate}}</div><div ng-message="maxlength">{{'MAX_LENGTH' |translate}}</div><div ng-message="minlength">{{'MIN_LENGTH'|translate}}</div></div></md-input-container></div></div><div class="row"><div class="col-sm-12 col-md-6 col-lg-6"><md-input-container><spinner name="userNameAutoCmp" img-src="{{autoCompletLoaderImg}}" show="userNameAutoCmpLoading" is-auto-complete="true"></spinner><label>{{'DELIVERY_ADDRESS'|translate}}<span class="mandatoryStar">*</span></label><input ng-model="pharmacyOrder.deliveryAddress" name="deliveryAddress" id="deliveryAddress" ng-disabled="viewMode || disableMode" required><div ng-messages="pharmacyorder.deliveryAddress.$error"><div ng-message="required">{{'REQUIRED' |translate}}</div></div></md-input-container></div><div class="col-sm-12 col-md-6 col-lg-6"><md-input-container><label>{{'PICKUP_MODE'|translate}}</label><md-select ng-model="pharmacyOrder.pickupMode" ng-disabled="viewMode"><md-option ng-repeat="pickupmode in pickupmode" ng-value="pickupmode">{{pickupmode}}</md-option></md-select></md-input-container></div></div><div class="row"><div class="col-sm-12 col-md-6 col-lg-6"><md-input-container><label>{{'PAYMENT_MODE'|translate}}</label><md-select ng-model="pharmacyOrder.paymentMode" ng-disabled="viewMode"><md-option ng-repeat="paymentmode in paymentmode" ng-value="paymentmode">{{paymentmode}}</md-option></md-select></md-input-container></div><div class="col-sm-12 col-md-6 col-lg-6"><md-input-container><spinner name="userNameAutoCmp" img-src="{{autoCompletLoaderImg}}" show="userNameAutoCmpLoading" is-auto-complete="true"></spinner><label>{{'PICKUP_INSTRUCTION'|translate}}</label><input ng-model="pharmacyOrder.pickupInstructions" ng-disabled="viewMode"></md-input-container></div></div><div class="row"><div class="col-sm-12 col-md-6 col-lg-6"><md-input-container><label>{{'STATUS'|translate}}</label><input ng-model="pharmacyOrder.status" ng-disabled="status || viewMode"></md-input-container></div></div><div class="col-sm-12 col-md-12 col-lg-12 padding-t-b-10 wizardFooter" style="margin-left:27px"><div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 textAlign-R"><md-button type="button" ng-show="visiblePlaceOrder && checkVisiblePlaceOrder()" ng-disabled="viewMode" class="md-raised md-warn" ng-click="placeOrder()">{{'PLACE_ORDER' | translate}}</md-button></div><div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 padding-0 textAlign-R"><md-button class="md-raised" ng-hide="btndisable" ng-click="cancel()">{{'CANCEL'|translate}}</md-button><md-button ng-if="pageState !=='view'" class="md-raised md-warn" ng-disabled="!pharmacyorder.$valid" type="submit" ng-hide="invisibleBtn" ng-click="savePharmacyOrder()">{{'SAVE'|translate}}</md-button></div></div></div></form></div><div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-top: 20px; padding-bottom: 20px"><md-button type="button" ng-disabled="viewMode" ng-show="visibleaddnew1 && !inlineEnabled" class="md-raised md-warn" ng-click="addMedicationOrder()"><i class="fa fa-plus"></i> {{'ADD_NEW' | translate}}</md-button><div class="pull-right"><md-menu><md-button type="button" class="md-raised" ng-click="$mdOpenMenu($event)">{{'SHOW'|translate}} {{}}</md-button><md-menu-content width="3" ng-init="maxRecordsAr = [10,25,50,100]"><md-menu-item ng-repeat="item in maxRecordsAr"><md-button ng-click="setMaxRecords(item)"><span md-menu-align-target>{{'SHOW'|translate}} {{item}} </span></md-button></md-menu-item></md-menu-content></md-menu></div></div></div><div class="pre-table" style="background-color:#DDDDDD; border-radius:3px"><div class="pre-header"><div class="row"><div class="col-xs-12 col-sm-2 col-md-2"><span style="padding:10px; display:block">Prescription Ref</span></div><div class="hidden-xs col-sm-3 col-md-2"><span style="padding:10px; display:block">Medication</span></div><div class="hidden-xs col-sm-2 col-md-2"><span style="padding:10px; display:block">Variant</span></div><div class="hidden-xs col-sm-1 col-md-2"><span style="padding:10px; display:block">Qty</span></div><div class="hidden-xs col-sm-2 col-md-2"></div><div class="hidden-xs col-sm-2 col-md-2"></div></div></div><div class="pre-body" ng-repeat="pharmacyOrderMedication in medicationOrderList" ng-include="getTemplate(pharmacyOrderMedication)" style="background-color:#f5f5f5"><script type="text/ng-template" id="display"><div class="row">
+                <div class="col-xs-12 col-sm-2 col-md-2" ng-init="column = false" >
+                    <!-- <span style="padding:5px 10px; display:block"> -->
+                        <div class="row">
+                        <div class="col-xs-1 visible-xs hidden-sm hidden-md hidden-lg" style="padding-right:10px; width:40px !important;"> 
+                        <a class="visible-xs hidden-sm hidden-md hidden-lg" style="display:inline-block !important; height:20px; width:20px; border-radius:10px; position:relative; top:6px; border:1px solid #cccccc; padding:3px;">
+                            <span ng-show="!column" ng-click="column=true" style="display:inline-block; width:100%; height:100%; border-radius:10px; color:#FFFFFF; background-color:#337ab7;padding-left:2px;padding-top:0px; padding-bottom:2px;"><i style="position:relative; top:-2px;">+</i></span>
+                            <span ng-show="column" ng-click="column=false" style="display:inline-block; width:100%; height:100%; border-radius:10px; color:#FFFFFF; background-color:#FF5722;padding-left:3px;padding-top:0px"><i style="position:relative; top:-2px;">-</i></span>
+
+                        </a>
+                        </div>
+                        <div style="padding: 10px 10px 10px 25px">
+                        {{pharmacyOrderMedication.prescriptionRef}}
+            <span ng-show="visibleViewPres">  <view-prescription-directive record="pharmacyOrder" manage-type="edit" current-state="manageorderpharmacy" prescription-Ref-Id="pharmacyOrderMedication.prescriptionRef" org-Loc-Id="pharmacyOrder.pharmacy.id"></view-prescription-directive></span>
+            </div>
+
+
+                    <!-- </span> -->
+                    </div>
+                </div>
+                <div class="hidden-xs col-sm-3 col-md-2">
+                    <span style="padding:5px 10px; display:block">
+                        
+
+                        {{pharmacyOrderMedication.medication.value}}
+                    </span>
+                </div>
+                <div class="hidden-xs col-sm-2 col-md-2">
+                    <span style="padding:5px 10px; display:block">
+                        <!-- <input type="text" style="width:100%; padding:5px 10px;"/> -->
+                        {{pharmacyOrderMedication.medicationVariant.value}}
+
+                    </span>
+                </div>
+                <div class="hidden-xs col-sm-1 col-md-2">
+                    <span style="padding:5px 10px; display:block">
+                        <!-- <input type="text" style="width:100%; padding:5px 10px;"/> -->
+                        {{pharmacyOrderMedication.qty}}
+                    </span>
+                </div>
+                <div class="hidden-xs col-sm-2 col-md-2"><span style="padding:5px 0px; display:block"><md-button class="md-raised md-warn" ng-click="editContact(pharmacyOrderMedication)" ng-disabled="viewMode || {{pharmacyOrder.status == 'Dispatched'}} " >{{"EDIT"|translate}}</md-button></span></div>
+
+                <div class="hidden-xs col-sm-2   col-md-2"><span style="padding:5px 0px; display:block"><md-button class="md-raised md-warn" ng-click="deleteOrder(pharmacyOrderMedication.id)" ng-disabled="viewMode || {{pharmacyOrder.status == 'Dispatched'}}">{{"DELETE"|translate}}</md-button></span></div>
+            </div>
+
+            
+
+            <div class="row" ng-if="column" style="padding-top:10px; padding-bottom:10px;">
+                <div class="hidden-xs hidden-sm hidden-md">
+                    <span style="padding:5px 10px; display:block">
+                    
+                        <!-- <label>Prescription</label> -->
+                        {{pharmacyOrderMedication.prescriptionRef}}
+            <span ng-show="visibleViewPres">  <view-prescription-directive record="pharmacyOrder" manage-type="edit" current-state="manageorderpharmacy" prescription-Ref-Id="pharmacyOrderMedication.prescriptionRef" org-Loc-Id="pharmacyOrder.pharmacy.id"></view-prescription-directive></span>
+
+
+                    </span>
+                </div>
+                <div class="col-xs-12 hidden-sm hidden-md">
+                    <span style="padding:8px 10px; display:block">
+                    
+                    <label>Meditation</label>
+                    
+
+                    {{pharmacyOrderMedication.medication.value}}
+
+                    </span>
+                </div>
+                <div class="col-xs-12 hidden-sm hidden-md">
+                    <span style="padding:8px 10px; display:block">
+                    
+                    <label>Varient</label>
+                    <!-- <input type="text" style="width:100%; padding:5px 10px;"/> -->
+                    {{pharmacyOrderMedication.medicationVariant.value}}
+
+
+                    </span>
+                </div>
+                <div class="col-xs-12 hidden-sm hidden-md">
+                    <span style="padding:8px 10px; display:block">
+                    
+                    <label>Qty</label>
+                    <!-- <input type="text" style="width:100%; padding:5px 10px;"/> -->
+                    {{pharmacyOrderMedication.qty}}
+                    </span>
+                </div>
+                <div class="col-xs-12 hidden-sm hidden-md" style="padding-right:10px;">
+                    <md-button class="md-raised md-warn" ng-click="editContact(pharmacyOrderMedication)" ng-disabled="viewMode || {{pharmacyOrder.status == 'Dispatched'}}">{{"EDIT"|translate}}</md-button>
+
+                    <md-button class="md-raised md-warn" ng-click="deleteOrder(pharmacyOrderMedication.id)" ng-disabled="viewMode || {{pharmacyOrder.status == 'Dispatched'}}">{{"DELETE"|translate}}</md-button>
+
+                </div>
+                
+            </div></script><script type="text/ng-template" id="edit"><div class="row">
+                <div class="col-xs-12 col-sm-3 col-md-2" ng-init="column = false">
+                    
+                        
+                        <div class="row">
+                        <div class="col-xs-1 visible-xs hidden-sm hidden-md hidden-lg" > 
+                        <a style="display:inline-block !important; height:20px; width:20px; border-radius:10px; border:1px solid #cccccc; padding:3px;">
+                            <span ng-show="!column" ng-click="column=true" style="display:inline-block; width:100%; height:100%; border-radius:10px; color:#FFFFFF; background-color:#337ab7;padding-left:2px;padding-top:0px">+</span>
+                            <span ng-show="column" ng-click="column=false" style="display:inline-block; width:100%; height:100%; border-radius:10px; color:#FFFFFF; background-color:#FF5722;padding-left:2px;padding-top:0px">-</span>
+
+                        </a>
+                        <!-- <input type="text" style="width:calc(100% - 30px); margin-left:3px; display:inline-block; padding:5px 10px;"/> -->
+                            </div>
+                            <div class="col-xs-11 col-sm-12">
+                        <span style="padding:5px 13px 5px 5px; display:block"><input type="text" style="margin-left:3px; border:1px solid rgba(0,0,0,0.2); width:100%; display:inline-block; padding:5px 10px;" ng-model="pharmacyOrderMedication.prescriptionRef" /></span>
+                        </div>
+                        </div>
+
+
+                    <!-- </span> -->
+                </div>
+                <div class="hidden-xs col-sm-3 col-md-2">
+                    <span style="padding:5px 10px; display:block">
+                        
+
+                        <input  style="padding:5px 10px;border:1px solid rgba(0,0,0,0.2); width:100%;  display:block" ng-model="pharmacyOrderMedication.medication" autocomplete="off" uib-typeahead="medication as medication.value for medication in getMedications($viewValue)" typeahead-on-select="getVariant(pharmacyOrderMedication.medication.id)" typeahead-loading="loading" typeahead-min-length="getSmartSearchMinLength('medicationMinLength')" />
+                    </span>
+                </div>
+                <div class="hidden-xs col-sm-3 col-md-2">
+                    <span style="padding:5px 10px; display:block">
+                        <select ng-model="pharmacyOrderMedication.medicationVariant" style="width:100%; padding:5px 10px;" ng-options="item as item.value for item in medicationVariants track by item.id">
+             <option value="" disabled>-select-</option> 
+            </select>
+
+                    </span>
+                </div>
+                <div class="hidden-xs col-sm-3 col-md-2">
+                    <span style="padding:5px 10px; display:block">
+                        <input type="text" style="width:100px;border:1px solid rgba(0,0,0,0.2);padding:5px 10px;" ng-model="pharmacyOrderMedication.qty" />
+                    </span>
+                </div>
+                <div class="hidden-xs hidden-sm col-md-2"><span style="padding:5px 80px; display:block"><md-button class="md-raised md-warn" ng-click="saveMedicationFullfilment(pharmacyOrderMedication)">{{"SAVE"|translate}}</md-button></span></div>
+                <div class="hidden-xs hidden-sm col-md-2"><span style="padding:5px 10px; display:block"><md-button class="md-raised md-warn" ng-click="cancelOrderMedication()">{{"CANCEL"|translate}}</md-button></span></div>
+            </div>
+
+            
+
+            <div class="row" ng-if="column">
+                <div class="hidden-xs hidden-sm hidden-md">
+                    <span style="padding:5px 10px; display:block">
+                    <input type="text" style="width:100%;border:1px solid rgba(0,0,0,0.2); padding:5px 10px;" ng-model="pharmacyOrderMedication.prescriptionRef" />
+
+
+                    </span>
+                </div>
+                <div class="col-xs-12 hidden-sm hidden-md">
+                    <span style="padding:5px 10px; display:block">
+                    
+                    <label>Medication</label>
+                    
+
+                    <input  style="width:100%;border:1px solid rgba(0,0,0,0.2); padding:5px 10px;" ng-model="pharmacyOrderMedication.medication" autocomplete="off" uib-typeahead="medication as medication.value for medication in getMedications($viewValue)" typeahead-on-select="getVariant(pharmacyOrderMedication.medication.id)" typeahead-loading="loading" typeahead-min-length="getSmartSearchMinLength('medicationMinLength')" />
+
+                    </span>
+                </div>
+                <div class="col-xs-12 hidden-sm hidden-md">
+                    <span style="padding:5px 10px; display:block">
+                    
+                    <label>Variant</label>
+                    <select ng-model="pharmacyOrderMedication.medicationVariant" style="width:100%; padding:5px 10px;"  ng-options="item as item.value for item in medicationVariants track by item.id">
+             <option value="" disabled>-select-</option> 
+            </select>
+
+                    </span>
+                </div>
+                <div class="col-xs-12 hidden-sm hidden-md">
+                    <span style="padding:5px 10px; display:block">
+                    
+                    <label>Qty</label>
+                    <input type="text" style="width:100%;border:1px solid rgba(0,0,0,0.2);padding:5px 10px;" ng-model="pharmacyOrderMedication.qty" />
+                    </span>
+                </div>
+                <div class="col-xs-12 col-sm-3 hidden-md">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-3 "><span style="padding:5px 10px; display:block"><md-button class="md-raised md-warn" ng-click="saveMedicationFullfilment(pharmacyOrderMedication)">{{"SAVE"|translate}}</md-button></span></div>
+                        <div class="col-xs-6 col-sm-3"><span style="padding:5px 10px; display:block"><md-button class="md-raised md-warn" ng-click="cancelOrderMedication()">{{"CANCEL"|translate}}</md-button></span></div>
+                    </div>
+
+                </div>
+                
+            </div></script></div></div><div ng-show="totalItems > 0"><div><span>{{'SHOWING' | translate}} {{pagingInfo.startRecord + '-' + pagingInfo.endRecord + ' of ' + totalItems + ' items'}}</span></div><div class="text-center"><uib-pagination max-size="4" total-items="totalItems" ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()" boundary-links="true" class="pagination-md" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination></div></div><br><br><br><br><script src="components/js/custom/custom.js"></script>

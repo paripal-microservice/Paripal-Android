@@ -1,0 +1,127 @@
+<div class="row m_a_0"><div class="col-md-12 col-xs-12 col-lg-12 col-sm-12"><h5>{{skype.convType}}</h5><div class="main-video-page" style="min-height:350px;background-color: white"><div class="row m_a_0 p_15"><div class="col-md-4 col-xs-12 col-lg-4 col-sm-12" style="padding-left: 5px"><md-list><md-list-item><img class="doctorimg_src" src="{{patientImage}}" height="100" width="100 " id="logo"><div class="prf_img_area" ng-class="{'red':skype.patientSkypeStatus=='In conversation With Doctor','yellow':skype.patientSkypeStatus=='Away','grey':skype.patientSkypeStatus=='Not checked in'}"><span ng-click="patientControl?statusOpen('on'):''"><i class="fa fa-check" ng-show="skype.patientSkypeStatus=='Available'" aria-hidden="true" style="color: #fff;padding-left: 2px;padding-top:2px"></i> <i class="fa fa-circle" ng-show="skype.patientSkypeStatus=='Not checked in'" aria-hidden="true" style="color: #D3D3D3;padding-left: 2px;padding-top:2px"></i> <i class="fa fa-clock-o" ng-show="skype.patientSkypeStatus=='Away'" aria-hidden="true" style="color: white;padding-left: 3px;padding-top:2px"></i> <i class="fa fa-minus" ng-show="skype.patientSkypeStatus=='In conversation With Doctor'" aria-hidden="true" style="color: white;padding-left: 4px;padding-top:2px"></i></span><div class="pro-img-dropdown" ng-show="view && patientControl" style="position:absolute; top:20px; left:0px; min-height:100px; background-color:#FFFFFF; width:150px; z-index:100;box-shadow:0px 2px 10px rgba(0,0,0,0.2)"><div layout="column"><div ng-model="status" flex style="padding:5px" class="pi-list" ng-repeat="x in SkypeStatus"><span ng-click="updateSkypeStatus(x);setOptions(x);">{{x}}</span></div></div></div></div><span style="min-width:80px;max-width:80px;padding-left:15px;display:inline-block"><span class="status-text">{{ 'PATIENT' | translate }} :</span> </span><span style="min-width:159px;max-width:159px; display:inline-block;line-height:1"><span>{{skype.patientName}}</span><p style="color:#00bd00;margin-top: 0" ng-show="skype.patientSkypeStatus=='Available'">{{skype.patientSkypeStatus}}</p><p style="color:#D3D3D3;margin-top: 0" ng-show="skype.patientSkypeStatus=='Not checked in'">{{skype.patientSkypeStatus}}</p><p style="color:#FF6600;margin-top: 0" ng-show="skype.patientSkypeStatus=='Away'">{{skype.patientSkypeStatus}}</p><p style="color:#FF0000;margin-top: 0" ng-show="skype.patientSkypeStatus=='In conversation With Doctor'">{{skype.patientSkypeStatus}}</p></span></md-list-item></md-list><md-list ng-if="(skype.convType == 'APPOINTMENT')&&(skype.doctorId == loggedInUserDetails.id)"><md-input-container class="md-block"><label>{{'PATIENTS_IN_QUEUE'|translate}}</label><md-select name="patientsInQueue" id="patientsInQueue" ng-model="patientsInQueue" ng-disabled="viewmode" ng-change="setcurrentConvWith(patientsInQueue)"><md-option ng-repeat="queueList in patientsQueueList" ng-value="queueList" ng-selected="{{queueList.id == patientsInQueue.id}}">{{queueList.value}}</md-option></md-select></md-input-container></md-list><div ng-show="callPatControl"><div class="md-list-item-text" style="padding-left: 139px"><div class="call-chat-area" ng-disabled="!patientCallButton" ng-click="skypeAudioCall(skype.patientSkypeUserName)"><i class="fa fa-volume-up" aria-hidden="true" style="color:white;font-size: 20px"></i></div><div class="call-chat-area" ng-disabled="!patientCallButton" ng-click="skypeVideoCall(skype.patientSkypeUserName)"><i class="fa fa-video-camera" aria-hidden="true" style="color:white;font-size: 20px"></i></div><div class="call-chat-area" ng-disabled="!patientCallButton" ng-click="skypeChat(skype.patientSkypeUserName)"><i class="fa fa-commenting" aria-hidden="true" style="color:white;font-size: 20px"></i></div><div class="call-chat-area" ng-disabled="false" ng-click="cancelCallRequest()"><i class="fa fa-ban" aria-hidden="true" style="color:white;font-size: 20px"></i></div></div></div><md-list><md-list-item><img class="doctorimg_src" src="hospitalImage" height="100" width="100 " id="logo"> <span style="min-width:80px;max-width:80px;padding-left:15px;display:inline-block"><span class="status-text">{{ 'HOSPITAL' | translate }}:</span> </span><span style="min-width:159px;max-width:159px; display:inline-block"><span>{{skype.clinic}}</span></span></md-list-item></md-list><md-list><md-list-item><img class="doctorimg_src" src="{{doctorImage}}" height="100" width="100 " id="logo"><div class="prf_img_area" ng-class="{'red':skype.doctorSkypeStatus=='Doctor in but in conversation','yellow':skype.doctorSkypeStatus=='Away','grey':skype.doctorSkypeStatus=='Doctor not yet in'}"><span ng-click="doctorControl?statusOpen('on'):''"><i class="fa fa-check" ng-show="skype.doctorSkypeStatus=='Doctor in and Available'" aria-hidden="true" style="color: #fff;padding-left: 2px;padding-top:2px"></i> <i class="fa fa-circle" ng-show="skype.doctorSkypeStatus=='Doctor not yet in'" aria-hidden="true" style="color: #D3D3D3;padding-left: 2px;padding-top:2px"></i> <i class="fa fa-clock-o" ng-show="skype.doctorSkypeStatus=='Away'" aria-hidden="true" style="color: white;padding-left: 3px;padding-top:2px"></i> <i class="fa fa-minus" ng-show="skype.doctorSkypeStatus=='Doctor in but in conversation'" aria-hidden="true" style="color: white;padding-left: 4px;padding-top:2px"></i></span><div class="pro-img-dropdown" ng-show="view && doctorControl" style="position:absolute; top:20px; left:0px; min-height:100px; background-color:#FFFFFF; width:150px; z-index:100;box-shadow:0px 2px 10px rgba(0,0,0,0.2)"><div layout="column"><div ng-model="status" flex style="padding:5px" class="pi-list" ng-repeat="x in SkypeStatus"><span ng-click="updateSkypeStatus(x);setOptions(x);">{{x}}</span></div></div></div></div><span style="min-width:80px;max-width:80px;padding-left:15px;display:inline-block"><span class="status-text">{{ 'DOCTOR' | translate }}:</span> </span><span style="min-width:159px;max-width:159px; display:inline-block;line-height:1"><span>{{skype.doctorName}}</span><p style="color:#00bd00;margin-top: 0" ng-show="skype.doctorSkypeStatus=='Doctor in and Available'">{{skype.doctorSkypeStatus}}</p><p style="color:#D3D3D3;margin-top: 0" ng-show="skype.doctorSkypeStatus=='Doctor not yet in'">{{skype.doctorSkypeStatus}}</p><p style="color:#FF6600;margin-top: 0" ng-show="skype.doctorSkypeStatus=='Away'">{{skype.doctorSkypeStatus}}</p><p style="color:#FF0000;margin-top: 0" ng-show="skype.doctorSkypeStatus=='Doctor in but in conversation'">{{skype.doctorSkypeStatus}}</p></span></md-list-item></md-list><div ng-show="callDocControl"><div class="md-list-item-text row" style="padding-left: 153px"><div class="call-chat-area" ng-class="" ng-disabled="!patientCallButton" ng-click="skypeAudioCall(skype.doctorSkypeUserName)"><i class="fa fa-volume-up" aria-hidden="true" style="color:white;font-size: 20px"></i></div><div class="call-chat-area" ng-class="" ng-disabled="!patientCallButton" ng-click="skypeVideoCall(skype.doctorSkypeUserName)"><i class="fa fa-video-camera" aria-hidden="true" style="color:white;font-size: 20px"></i></div><div class="call-chat-area" ng-class="" ng-disabled="!patientCallButton" ng-click="skypeChat(skype.doctorSkypeUserName)"><i class="fa fa-commenting" aria-hidden="true" style="color:white;font-size: 20px"></i></div></div></div><md-list ng-show="coordinatorview"><md-list-item><img class="doctorimg_src" src="{{coordinatorImage}}" height="100" width="100 " id="logo"><div class="prf_img_area"><span ng-click="coordinatorview?statusOpen('on'):''"></span><div class="pro-img-dropdown" ng-show="hide" style="position:absolute; top:20px; left:0px; min-height:100px; background-color:#FFFFFF; width:150px; z-index:100;box-shadow:0px 2px 10px rgba(0,0,0,0.2)"><div layout="column"><div ng-model="status" flex style="padding:5px" class="pi-list" ng-repeat="x in SkypeStatus"><span ng-click="updateCoordinatorStatus(x)">{{x}}</span></div></div></div></div><span style="min-width:80px;max-width:80px;padding-left:15px;display:inline-block"><span class="status-text">{{ 'CO_ORDINATOR' | translate }}:</span> </span><span style="min-width:159px;max-width:159px; display:inline-block;line-height:1"><span>{{skype.CoordinatorName}}</span> <span>{{skype.CoordinatorMob}}</span></span>`</md-list-item></md-list><br><md-list><md-list-item><div class="md-list-item-text" ng-if="placeControl"><i class="fa fa-hand-pointer-o" aria-hidden="true" style="color:#036eba;font-size: 24px"></i> <a href="" ng-click="placeRequest()">Place Request</a></div><div class="md-list-item-text" ng-if="cancelControl && (skype.callStatus =='NOT_YET_STARTED')"><i class="fa fa-hand-pointer-o" aria-hidden="true" style="color:#FF0000;font-size: 24px"></i> <a href="" ng-click="cancelRequest()" style="color:#FF0000">Cancel Request</a></div></md-list-item></md-list><div class="row" style="padding-left:10px"><div ng-if="loggedInUserDetails.isOrganizationUser" class="col-md-6 col-lg-6 col-sm-6 col-xs-6"><a href="" ng-click="redirectToPrescription()">{{'MAKE_PRESCRIPTIONS' | translate}}</a></div><div class="col-md-6 col-lg-6 col-sm-6 col-xs-6"><a href="" ng-click="gotoTest()">{{'DIAGNOSTIC_TESTS' | translate}}</a></div><br><br><br><br><div class="col-md-6 col-lg-6 col-sm-6 col-xs-6"><a href="" ng-click="callFileUpload()">{{"UPLOAD_DOWNLOAD" | translate}}</a></div><div class="col-md-6 col-lg-6 col-sm-6 col-xs-6"><a href="" ng-click="goToAppointmentNotes()">{{"RECORD_DIAGNOSIS" | translate}}</a></div><br><br><br><br><div class="col-md-6 col-lg-6 col-sm-6 col-xs-6"><a href="" ng-click="goToPatientRecord()">{{'PATIENT_RECORD' | translate}}</a></div><div ng-if="loggedInUserDetails.isOrganizationUser" class="col-md-6 col-lg-6 col-sm-6 col-xs-6"><a href="" ng-click="updateMapDisease()">{{"MAP_DISEASE" | translate}}</a></div></div><br></div><div class="col-md-8 col-xs-12 col-lg-8 col-sm-12" style="line-height:1.5"><span class="CallStatus_1 status-text">Status: <span style="color:#000">{{skype.callStatus}}</span></span> <span class="Logout_1" ng-click="buttonLogout()" class="status-text"><span style="color:red"><i class="fa fa-sign-out"></i>&nbsp;LOGOUT</span></span> <span class="Questatus_1" ng-show="patientControl" style="color:#FFA500;float:right">{{skype.queue}}&nbsp;more Patients before you</span> <span class="Questatus_1" ng-show="doctorControl" style="color:#FFA500;float:right">{{skype.Doctorqueue}}&nbsp;more Patients in Queue</span><div class="CallScreen" ng-show="defaultView"><p style="padding-top:170px;color:#666">{{!showPhoneButton?'Awaiting Video/Chat':'SKYPE Video/Chat will be here'}}</p></div><div class="row" style="min-height: 350px;padding-left:15px" ng-show="videoView"><div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12" style="border:1px solid GREY;height:410px"><div class="row"><div class="col-xs-12 col-sm-12 col-md-12" style="display:inline-flex"><div id="render-self-window" style="width:100px; text-align:center; padding-bottom:12px"></div></div></div><div class="row"><div style="display:inline-flex" class="col-xs-12 col-sm-12 col-md-12"><div class="videoSizeReduce" id="render-p-window" style="margin:auto; text-align:center; width:85%"></div></div></div></div></div><div class="row" style="min-height: 350px;padding-left:15px" ng-show="audioView"><div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12" style="border:1px solid GREY;height:350px"><div class="row" style="padding-top:10px"><div style="display:inline-flex" class="col-xs-12 col-sm-12 col-md-12"><div style="margin:auto; text-align:center"><img style="width:350px" src="app/modules/skype-integration/views/images/user1.png"></div></div></div></div></div><div ng-show="chatView" class="row col-xs-12 col-sm-12 col-md-12 col-lg-12" style="min-height: 350px;padding-left:15px;border:1px solid GREY;overflow-y: scroll;overflow-x:hidden;height:328px;position:relative"><div class="row" style="position:absolute;left:0;right:0; overflow-y:scroll;top:0;bottom:3em">`<div style="padding-left:15px; justify-content:space-between" ng-repeat="messager in sendedText">{{messager.name}} : {{messager.text}}</div></div><div class="row"><input class="col-md-11 col-xs-11 col-lg-11 col-sm-11" placeholder="Send a message" ng-model="enteredText" type="textarea" style="position:absolute;left:0;right:0;bottom:0;padding:.5em;border-top:1px solid grey;border-right:1px solid grey;border-left:none;border-bottom:none"> <i class="col-md-1 col-xs-1 col-lg-1 col-sm-1 fa fa-paper-plane" ng-click="sendmessage()" aria-hidden="true" style="position:absolute;right:0;bottom:0;height:36px;border:1px solid grey;border-left:none;border-bottom:none;padding-top:13px"></i></div></div><div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align:center" ng-if="skype.callStatus=='ON_GOING' && !hideCallButton"><i class="fa fa-phone fa-3x" ng-click="endConversation()" style="color: white;background-color:#ff0000; border: 1px solid #ff0000;padding:2px;border-radius: 49%"></i></div><div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align:center" ng-show="skype.callStatus=='ON_GOING' && hideCallButton"><md-button type="button" class="md-raised md-warn" ng-click="endCall()"><i class="fa fa-ban"></i> {{'END_CONVERSATION' | translate}}</md-button></div><br><br></div></div></div></div></div><style>.list_profile_img_pat{
+        min-width: 60px;height: 60px;border-radius: 50%;background:white url({{patientImage}}) left center/cover;
+        border:1px solid #ccc;display: inline-block;
+    }
+    .list_profile_img_doc{
+        min-width: 60px;height: 60px;border-radius: 50%;background:white url({{doctorImage}}) left center/cover;
+        border:1px solid #ccc;display: inline-block;
+    }
+     .list_profile_img_cor{
+        min-width: 60px;height: 60px;border-radius: 50%;background:white url({{coordinatorImage}}) left center/cover;
+        border:1px solid #ccc;display: inline-block;
+    }
+     .list_profile_img{
+        min-width: 60px;height: 60px;border-radius: 50%;background:white url({{hospitalImage}}) left center/cover;
+        border:1px solid #ccc;display: inline-block;
+    }
+    .m_a_0{
+        margin: 0;
+    }
+    .p_15{
+        padding: 15px;
+    }
+    .status-text{
+        font-size: 12px;
+        color:#999;
+    }
+    md-list-item.md-no-proxy, md-list-item .md-no-style {
+        position: relative;
+        padding: 0 0px;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1 1 auto;
+        flex: 1 1 auto;
+        margin-bottom: 10px;
+    }
+    md-list {
+        display: block;
+        padding: 0px 0;
+    }
+     .prf_img_area{
+        width: 18px;height: 18px;border-radius: 50%;background-color: green;left: 75px;
+    top: 46px;position: absolute;margin: 0; float: right;
+    }
+    .call-chat-area{
+        width: 40px;height: 40px;background-color: #036eba;
+    border-radius: 50%;text-align: center;padding-top: 10px;
+        display: inline-block;vertical-align: top;
+    }
+    .m-l-10{
+        margin-left: 10px;
+    }
+    .red{
+    background-color: #FF0000 !important;
+    }
+    .yellow{
+    background-color: #FF6600 !important;
+    }
+     .grey{
+    background-color: #D3D3D3 !important;
+    }
+    
+    .pro-img-dropdown .pi-list:hover{ background-color:rgba(0,0,0,0.1); }
+    
+     .fileUpload {
+        position: relative;
+        overflow: hidden;
+        margin: 10px;
+    }
+
+    .fileUpload span {
+        font-size: 17px;
+        display: block;
+        padding: 2px 5px;
+    }
+
+    .fileUpload input.upload {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        width: 90px;
+    }
+
+    .searchResult i {
+   
+    border-radius: 50%;
+    color: #0270BB;
+    display: block;
+    margin: 10px auto;
+    padding: 24px 0px;
+    text-align: center;
+    transition: color 0.2s ease-out 0s, #F2F1F0 0.2s ease-in 0s;
+    width: 85px;
+}
+.CallStatus_1 {
+  width: 40%;
+  float: left;
+}
+.Logout_1 {
+  float: left;
+}
+.Questatus_1 {
+  width: 35%;
+  float: left;
+}
+.CallScreen {
+  margin-top: 20px; 
+  background-color: #ccc;
+  min-height: 350px;
+  text-align: center;
+}
+
+@media (max-width: 500px){
+  .CallStatus_1 { width: 70% !important; float:left; }
+  .Logout_1 { width: 30% !important; float:left; }
+  .Questatus_1 { width: 100% !important; float:left; }
+  .CallScreen { margin-top: 40px !important; }
+  .call-chat-area { position: relative !important; z-index: 9999 !important }
+}
+
+.doctorimg_src {
+   min-width: 60px;height: 60px;border-radius: 50%;
+}</style>

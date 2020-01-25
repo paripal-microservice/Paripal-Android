@@ -1,0 +1,33 @@
+{
+    "ICONS": {
+        "ORG": "app/images/pointers/organizations.png",
+        "HOSPITAL": "app/images/pointers/gen_hospitals.png",
+        "SPECIALITY_HOSPITAL": "app/images/pointers/special_hospitals.png",
+        "CLINIC": "app/images/pointers/medical_store.png",
+        "SPECIALITY_CLINIC": "app/images/pointers/special_clinics.png",
+        "LAB": "app/images/pointers/labs.png",
+        "SPECIALITY_LAB": "app/images/pointers/special_labs.png",
+        "PHARMACY": "app/images/pointers/labs.png",
+        "MEDICAL_STORE": "app/images/pointers/medical_store.png",
+        "MEDICAL_MANUFACTURER": "app/images/pointers/organizations.png",
+        "GYM": "app/images/pointers/gym.png",
+        "SALON": "app/images/pointers/salon.png",
+        "DEFAULT": "app/images/pointers/male.png",
+        "NON_SUBSCRIBED": "app/images/pointers/non_subscribed_location_placeholder.png"
+    },
+    "SELECTED_ICONS": {
+        "ORG": "app/images/pointers/organizations_selected.png",
+        "HOSPITAL": "app/images/pointers/gen_hospitals_selected.png",
+        "SPECIALITY_HOSPITAL": "app/images/pointers/special_hospitals_selected.png",
+        "CLINIC": "app/images/pointers/medical_store_selected.png",
+        "SPECIALITY_CLINIC": "app/images/pointers/special_clinics_selected.png",
+        "LAB": "app/images/pointers/labs_selected.png",
+        "SPECIALITY_LAB": "app/images/pointers/special_labs_selected.png",
+        "PHARMACY": "app/images/pointers/labs_selected.png",
+        "MEDICAL_STORE": "app/images/pointers/medical_store_selected.png",
+        "MEDICAL_MANUFACTURER": "app/images/pointers/organizations_selected.png",
+        "GYM": "app/images/pointers/gym_selected.png",
+        "DEFAULT": "app/images/pointers/male.png",
+        "SALON": "app/images/pointers/salon_selected.png"
+    }
+}

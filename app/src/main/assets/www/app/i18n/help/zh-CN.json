@@ -1,0 +1,12 @@
+﻿{
+    "ORG_DISPLAY_NAME": "显示名称",
+    "ORG_DETAILED_NAME": "详细名称",
+    "DATE_OF_COMMENCEMENT": "生效日期",
+    "SYSTEM_ORGANIZATION": "特许经营",
+    "SELECT_ORG_TYPE": "选择组织类型",
+    "SELECT_CATAGORY_1": "类别1",
+    "SELECT_CATAGORY_2": "类别2",
+    "SELECT_CATAGORY_3": "类别3",
+    "TIN": "锡",
+    "SALES_TAX_CODE": "销售税代码"
+}

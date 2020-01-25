@@ -1,0 +1,25 @@
+<div class="row padding-b-10 padding-t-20"><div class="col-sm-12 col-md-12 col-lg-12"><button class="btn btn-default prevBtn btn-md" type="button" ng-click="moveToPreviousStep()"><span class="previousTextBtn">{{'PREV_STEP'|translate}}</span> <i class="fa fa-angle-left"></i></button></div><div id="videoTag"></div></div><input type="radio" hidden="true" value="{{readonly}}"><iframe id="iframe1" ng-src="{{iframeURL}}" readonly="{{readonly}}" width="100%" ng-iframe-resizer scrolling="no" onload="oniFrameLoad(this)"></iframe><style type="text/css">.presPageCSS{
+		float:right !important;
+		 width:300px !important;
+		 height:170px !important;
+	}
+	.presPageCSS div {
+		background-color: transparent !important;
+		height: 0px !important;
+	}
+	#videoTag div:nth-child(2) {
+		height: 166px !important;
+		width: 100% !important;
+		float: right !important;
+	}
+
+	.presPageCSS div:nth-child(2) {
+		position: fixed !important;
+		width:auto !important;
+		height: auto !important;
+	}
+
+	.presPageCSS video {
+		width:25% !important;
+		height: auto !important;
+	}</style>

@@ -1,0 +1,218 @@
+[
+	{		
+		"id":"1",
+		"name":"All categories",				
+		"children":[{
+						"id":"2",
+						"name":"Devices",
+						"parentId":"1",
+						"icon":".devices",
+						"children":[{
+										"id":"3",
+										"name":"Mobile Phones",
+										"parentId":"2",
+										"children":[{
+														"id":"4",
+														"name":"Super Smart Phone",
+														"state":"/smp",
+														"parentId":"3"
+													},{
+														"id":"5",
+														"name":"Thin Magic Mobile",
+														"state":"/tmm",
+														"parentId":"3"
+													},{
+														"id":"6",
+														"name":"Performance Crusher",
+														"state":"/pc",
+														"parentId":"3"
+													},{
+														"id":"7",
+														"name":"Futuristic Experience",
+														"state":"/fe",
+														"parentId":"3"
+													}]								
+									},{
+										"id":"8",
+										"name":"Televisions",
+										"parentId":"2",
+										"children":[{
+														"id":"9",
+														"name":"Flat Superscreen",
+														"state":"/fs",
+														"parentId":"8"
+													},{
+														"id":"10",
+														"name":"Gigantic LED",
+														"state":"/GLED",
+														"parentId":"8"
+													},{
+														"id":"11",
+														"name":"Power Eater",
+														"state":"/pe",
+														"parentId":"8"
+													},{
+														"id":"12",
+														"name":"3D Experience",
+														"state":"/3de",
+														"parentId":"8"
+													},{
+														"id":"13",
+														"name":"Classic Comfort",
+														"state":"/cc",
+														"parentId":"8"
+													}]								
+									},{
+										"id":"14",
+										"name":"Cameras",
+										"parentId":"2",
+										"children":[{
+														"id":"15",
+														"name":"Smart Shot",
+														"state":"/ss",
+														"parentId":"14"
+													},{
+														"id":"16",
+														"name":"Power Shooter",
+														"state":"/ps",
+														"parentId":"14"
+													},{
+														"id":"17",
+														"name":"Easy Photo Maker",
+														"state":"/epm",
+														"parentId":"14"
+													},{
+														"id":"18",
+														"name":"Super Pixel",
+														"state":"/sp",
+														"parentId":"14"
+													}]								
+									}]						
+					},{
+						"id":"19",
+						"name":"Magazines",
+						"parentId":"1",
+						"children":[{
+										"id":"20",
+										"name":"National Geographic",
+										"state":"/ng",
+										"parentId":"19"
+									},{
+										"id":"21",
+										"name":"Scientific American",
+										"state":"/sa",
+										"parentId":"19"
+									},{
+										"id":"22",
+										"name":"The Spectator",
+										"state":"/ts",
+										"parentId":"19"
+									},{
+										"id":"23",
+										"name":"The Rambler",
+										"state":"/tr",
+										"parentId":"19"
+									},{
+										"id":"24",
+										"name":"Physics World",
+										"state":"/pw",
+										"parentId":"19"
+									},{
+										"id":"25",
+										"name":"The New Scientist",
+										"state":"/tns",
+										"parentId":"19"
+									}]						
+					},{
+						"id":"26",
+						"name":"Store",
+						"parentId":"1",
+						"children":[{
+										"id":"27",
+										"name":"Clothes",
+										"parentId":"26",
+										"children":[{
+														"id":"28",
+														"name":"Women's Clothing",
+														"parentId":"27",
+														"children":[{
+																		"id":"29",
+																		"name":"Tops",
+																		"state":"/tops",
+																		"parentId":"28"
+																	},{
+																		"id":"30",
+																		"name":"Dresses",
+																		"state":"/Dresses",
+																		"parentId":"28"
+																	},{
+																		"id":"31",
+																		"name":"Trousers",
+																		"state":"/Trousers",
+																		"parentId":"28"
+																	},{
+																		"id":"32",
+																		"name":"Shoes",
+																		"state":"/Shoes",
+																		"parentId":"28"
+																	},{
+																		"id":"33",
+																		"name":"Sale",
+																		"state":"/Sale",
+																		"parentId":"28"
+																	}]														
+													},{
+														"id":"34",
+														"name":"Men's Clothing",
+														"parentId":"27",
+														"children":[{
+																		"id":"35",
+																		"name":"Shirts",
+																		"state":"/Shirts",
+																		"parentId":"34"
+																	},{
+																		"id":"36",
+																		"name":"Trousers",
+																		"state":"/Trousers",
+																		"parentId":"34"
+																	},{
+																		"id":"37",
+																		"name":"Shoes",
+																		"state":"/Shoes",
+																		"parentId":"34"
+																	},{
+																		"id":"38",
+																		"name":"Sale",
+																		"state":"/Sale",
+																		"parentId":"34"
+																	}]														
+													}]
+									},{
+										"id":"39",
+										"name":"Jewelry",
+										"state":"/Jewelry",
+										"parentId":"26"
+									},{
+										"id":"40",
+										"name":"Music",
+										"state":"/Music",
+										"parentId":"26"
+									},{
+										"id":"41",
+										"name":"Grocery",
+										"state":"/Grocery",
+										"parentId":"26"
+									}]						
+					},{
+						"id":"42",
+						"name":"Collections",
+						"state":"/Collections",
+						"parentId":"1"
+					},{
+						"id":"43",
+						"name":"Credits",
+						"state":"/Credits",
+						"parentId":"1"
+					}]
+	}
+]

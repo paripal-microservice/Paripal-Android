@@ -1,0 +1,111 @@
+[{
+    "name": "SUMMARY",
+    "href": "orglocuserlist",
+    "iconClass": "icon-cont summary"
+}, {
+    "name": "LOCATIONS",
+    "href": "orglocuserlist",
+    "iconClass": "icon-cont locations"
+}, {
+    "name": "ADDRESSES",
+    "href": "userAddressList",
+    "iconClass": "icon-cont addresses"
+}, {
+    "name": "CALENDAR",
+    "href": "usercalendarview",
+    "iconClass": "icon-cont appointments",
+    "property": "data",
+    "id": "userId",
+    "value": "value"
+}, {
+    "name": "SPECIALIZATIONS",
+    "href": "orghealthprofessionallist",
+    "iconClass": "icon-cont medical-certificate",
+    "property": "professional",
+    "id": "professionalId",
+    "value": "userName"
+}, {
+    "name": "SUPPORT_SERVICE_CATEGORIES",
+    "href": "orgsupportprofcategorieslist",
+    "iconClass": "icon-cont support",
+    "property": "professional",
+    "id": "professionalId",
+    "value": "userName"
+}, {
+    "name": "DISEASE_VARIANTS",
+    "href": "diseaseVariantLinkedList",
+    "iconClass": "icon-cont diseases",
+    "property": "professional",
+    "id": "professionalId",
+    "value": "value"
+}, {
+    "name": "TREATMENT_TYPES",
+    "href": "professionalTreatmentList",
+    "iconClass": "icon-cont treatment-types",
+    "property": "user",
+    "id": "professionalId",
+    "value": "value"
+}, {
+    "name": "REVIEWS_OF_HEALTH_PROFESSIONAL",
+    "href": "healthproreviewlist",
+    "iconClass": "icon-cont provide-rating",
+    "property": "professional",
+    "id": "professionalId",
+    "value": "userName"
+}, {
+    "name": "REVIEWS_OF_SUPPORT_SERVICE_PROFESSIONAL",
+    "href": "supportproreviewlist",
+    "iconClass": "icon-cont provide-rating",
+    "property": "professional",
+    "id": "professionalId",
+    "value": "userName"
+}, {
+    "name": "STATISTICS",
+    "href": "monthlyDiseaseVariantLinkedStatastics",
+    "iconClass": "icon-cont statistics",
+    "property": "professional",
+    "id": "professionalId",
+    "value": "value"
+}, {
+    "name": "MY_TRANSACTIONS",
+    "href": "subscribertransaction",
+    "iconClass": "icon-cont transactions",
+    "property": "professional",
+    "id": "userId",
+    "value": "value"
+}, {
+    "name": "EVENTS",
+    "href": "eventList",
+    "iconClass": "icon-cont events",
+    "property": "user",
+    "id": "userId",
+    "value": "value"
+}, {
+    "name": "RESOURCES",
+    "href": "resourcelist",
+    "iconClass": "icon-cont health-library",
+    "property": "user",
+    "id": "userId",
+    "value": "value"
+}, {
+    "name": "ARTICLES",
+    "href": "articles",
+    "iconClass": "icon-cont articles",
+    "property": "userData",
+    "id": "userId",
+    "value": "value"
+}, {
+    "name": "MESSAGE_HISTORY",
+    "href": "notificationlist",
+    "iconClass": "icon-cont message-history",
+    "property": "user",
+    "id": "userId",
+    "value": "value"
+}, {
+    "name": "FORUMS",
+    "href": "listofForums",
+    "iconClass": "icon-cont forums",
+    "property": "user",
+    "id": "userId",
+    "value": "value"
+}]

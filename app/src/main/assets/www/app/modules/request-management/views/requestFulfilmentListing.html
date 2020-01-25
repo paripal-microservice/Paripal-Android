@@ -1,0 +1,159 @@
+<div ng-class="{'posRelative':orgLocListPageSpinner}"><div class="pageTitle"><span>{{'REQUEST_FULFILMENT_LIST'|translate}}</span><help-directive help-id="REQUEST_FULLFILLMEN_LISTING" class="divContainer"></help-directive></div><div class="filterPanel filter"><uib-accordion><uib-accordion-group is-open="status.open"><uib-accordion-heading><i class="fa fa-filter"></i> <span>&nbsp;{{'FILTER'|translate}}</span> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i></uib-accordion-heading><form name="listForm" novalidate="novalidate" class="form-horizontal panel-body-top" id="listForm" autocomplete="off"><div class="col-sm-12 col-md-12 col-lg-12"><div class="row"><div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><md-input-container><label>{{'REQ_REQ_ID'|translate}}</label><input ng-model="requestFulfilmentFilter.requestId" ng-disabled="disabled" name="requestId" id="requestId"></md-input-container></div><div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><md-input-container><label>{{'REQUEST_DATE'|translate}}</label><input datepicker class="pointer" ng-model="requestFulfilmentFilter.requestDate" name="requestDate" id="requestDate"></md-input-container></div><div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><md-input-container><label>{{'REQUEST_TYPE'|translate}}</label><input ng-model="requestFulfilmentFilter.requestsType.value" name="requestType" id="requestType" readonly="true"></md-input-container></div></div><div class="row"><div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><md-input-container class="md-block"><label>{{'SERVICE_TYPE'|translate}}</label><input type="text" ng-model="requestFulfilmentFilter.serviceType.value" name="serviceType" id="serviceType" readonly="true"></md-input-container></div><div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><md-input-container class="md-block"><label>{{'REQUEST_STATUS'|translate}}</label><input type="text" ng-model="requestFulfilmentFilter.requestStatus.value" name="status" id="status" readonly="true"></md-input-container></div><div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><md-input-container class="md-block"><label>{{'INITIATED_BY'|translate}}</label><input type="text" ng-model="requestFulfilmentFilter.initiator.value" name="insiatedBy" id="insiatedBy" readonly="true"></md-input-container></div></div><div class="row"><div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><md-input-container><label>{{'REQ_ON_BEHALF_OF'|translate}}</label><input ng-model="requestFulfilmentFilter.onBehalfOf.value" ng-disabled="disabled" readonly="true"></md-input-container></div><div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><md-input-container><label>{{'ORGANIZATION_LOCATION'|translate}}</label><input ng-model="requestFulfilmentFilter.organization.value" ng-disabled="disabled" readonly="true"></md-input-container></div><div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><md-input-container><label>{{'DOCTOR/HEALTH_PROFESSIONAL'|translate}}</label><input ng-model="requestFulfilmentFilter.healthProfessional.value" ng-disabled="disabled" readonly="true"></md-input-container></div></div></div></form></uib-accordion-group></uib-accordion></div><div class="row padding-b-10 padding-t-20"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><md-button type="button" class="md-raised md-warn" ng-click="addNewRequestFulfilment()" ng-hide="!hasAddAccess" ng-show="addnew"><i class="fa fa-plus"></i> {{'ADD_NEW' | translate}}</md-button><md-button class="md-raised" ng-click="cancel()">{{'CANCEL'|translate}}</md-button><div class="pull-right"><md-menu><md-button type="button" class="md-raised" ng-click="$mdOpenMenu($event)">{{'SHOW'|translate}} {{itemPerPage}}</md-button><md-menu-content width="3" ng-init="maxRecordsAr = [10,25,50,100]"><md-menu-item ng-repeat="item in maxRecordsAr"><md-button ng-click="setMaxRecords(item)"><span md-menu-align-target>{{'SHOW'|translate}} {{item}} </span></md-button></md-menu-item></md-menu-content></md-menu></div></div></div><div class="divtable accordion-xs"><div ng-repeat="requestFulfilment in requestFulfilmentList" class="oddEven"><div class="tr"><div class="td firstnames accordion-xs-toggle"><img class="mobilePadding" src="app/images/user.jpg" height="50px" width="50px" id="logo"><br>{{requestFulfilment.createRequest.initiator.value}}</div><div class="accordion-xs-collapse"><div class="inner"><div class="td lastnames1">{{requestFulfilment.fulfilmentInstanceNo}}&nbsp;<a class="pointer" ng-click="manageFulfimentList(requestFulfilment.id,true)" check-permission feature-privilege="{{requestFulfilmentFilter.requestsType.code =='REQ_OTHER_REQUEST'? featurePrivilegeConstants.RESPOND_TO_REQ_OTHER : featurePrivilegeConstants.REQUEST_STATUS_EDIT}}"><i class="fa fa-pencil"></i><md-tooltip>{{"EDIT" | translate}}</md-tooltip></a>&nbsp;<a class="pointer" ng-click="manageFulfimentList(requestFulfilment.id,false)" check-permission feature-privilege="{{requestFulfilmentFilter.requestsType.code =='REQ_OTHER_REQUEST'? featurePrivilegeConstants.RESPOND_TO_REQ_OTHER : featurePrivilegeConstants.REQUEST_STATUS_VIEW}}"><i class="fa fa-eye"></i><md-tooltip>{{"VIEW" | translate}}</md-tooltip></a><br>{{requestFulfilment.createRequest.requestId}}&nbsp;<a class="pointer" ng-click="viewReq(requestFulfilment.createRequest.id)"><i class="fa fa-eye"></i><md-tooltip>{{"VIEW_REQUEST" | translate}}</md-tooltip></a></div><div class="td lastnames2">{{requestFulfilment.fulfilmentStatus.value}}<br><b>{{'START_ON' | translate}}:</b>{{requestFulfilmentFilter.start}}<br><b>{{'END_ON' | translate}}:</b>{{requestFulfilmentFilter.end}}</div><div class="td lastnames3"><b>{{'REQUESTER_COMMENTS' | translate}}:</b>{{requestFulfilment.requestorComments}}</div><div class="td lastnames4"><b>{{'DOCTOR_COMMENTS'|translate}}:</b>{{requestFulfilment.remarks}}</div><div class="td lastnames5"><a class="pointer" ng-if="requestFulfilment.transaction" ng-click="fulfilmentGetById(requestFulfilment)"><i class="fa fa-credit-card"></i><md-tooltip>{{"Create/View Bill" | translate}}</md-tooltip></a>&nbsp;<a class="pointer" ng-if="requestFulfilment.fulfilmentStatus.code =='FULFILMENT_STARTED' && isOrganizationUser" ng-click="markAsFulfilled(requestFulfilment.id)"><i class="fa fa-check"></i><md-tooltip>{{"MARK_AS_FULFILED" | translate}}</md-tooltip></a>&nbsp;<a class="pointer" href="" ng-controller="AppointmentsListCtrl" ng-click="viewPrescriptionForRequest(requestFulfilment)"><i class="fa fa-pencil-square-o"></i><md-tooltip>{{"VIEW_PRESCRIPTION" | translate}}</md-tooltip></a>&nbsp;<a class="pointer" href="" ng-click="goToUploadDownload(requestFulfilment)"><i class="fa fa-upload" aria-hidden="true"></i><md-tooltip>{{"UPLOAD_DOWNLOAD" | translate}}</md-tooltip></a>&nbsp;<a class="pointer" href="" ng-click="goToAppointmentNotes(requestFulfilment)" check-permission feature-privilege="{{featurePrivilegeConstants.RECORD_DIAGNOSIS_ADD}}"><i class="fa fa-heartbeat" aria-hidden="true"></i><md-tooltip>{{"RECORD_DIAGNOSIS" | translate}}</md-tooltip></a></div></div></div></div></div><div ng-show="totalItems > 0"><div class="pageRecord"><span>{{'SHOWING' | translate}} {{pagingInfo.startRecord + '-' + pagingInfo.endRecord + ' of ' + totalItems + ' items'}}</span></div><div class="text-center"><uib-pagination max-size="4" total-items="totalItems" ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()" boundary-links="true" class="pagination-md" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination></div></div></div></div><style>.firstnames{width: 13%; word-wrap: break-word;}
+.lastnames1{width: 15%; word-wrap: break-word;}
+.lastnames2{width: 16%; word-wrap: break-word;}
+.lastnames3{width: 20%; word-wrap: break-word;}
+.lastnames4{width: 21%; word-wrap: break-word;}
+.lastnames5{width: 15%; word-wrap: break-word;}
+
+
+
+ .divtable .tr {
+  overflow: hidden;
+  clear: both;
+  line-height: 20px;
+  
+}
+
+.divtable .oddEven:nth-child(odd) {
+    background-color: #f1f1f1 !important;
+}
+.divtable .oddEven:nth-child(even) {
+    background-color: transparent !important;
+}
+
+.divtable .tr:hover{
+    background-color: #DEEBF6;
+}
+
+.divtable .th,
+.divtable .td {
+  padding: 5px 10px;
+  float: left;
+}
+
+.divtable .th { font-weight: bold; }
+
+.firstname { width: 40%; }
+
+.lastname { width: 30%; }
+
+.username { width: 30%; }
+
+
+ @media (max-width: 767px) {
+
+.accordion-xs .headings { display: none; }
+
+.accordion-xs .tr { border-bottom-color: #fff; border-bottom:1px solid #ccc }
+
+.accordion-xs .th,
+ .accordion-xs .td {
+  float: none;
+  width: auto;
+  padding: 0;
+}
+
+.accordion-xs .accordion-xs-toggle {
+/*  background-color: orange;*/
+  color: #555;
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+.accordion-xs .accordion-xs-toggle:hover { background-color: #f1f1f1; }
+
+.accordion-xs .accordion-xs-toggle:after {
+  content: '\2b';
+  float: right;
+}
+
+.accordion-xs .accordion-xs-toggle.collapsed:after { content: '\2212'; float: left;}
+     
+.accordion-xs-collapse .inner { padding: 10px; }
+
+.accordion-xs-collapse .td:before { font-weight: bold; }
+
+
+.accordion-xs .accordion-xs-toggle:after {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  float: left;
+  margin-right: 10px;
+  background-color: #3acce1;
+  border-radius: 50%;
+  padding: 3px;
+  font-size: 10px;
+}
+.lastnames1{ float:left !important; width:50% !important; margin-bottom: 5px !important;}
+.lastnames2{ float:left !important; width:50% !important; margin-bottom: 5px !important;}
+.lastnames3{ float:left !important; width:50% !important; margin-bottom: 5px !important;} 
+.lastnames4{ float:left !important; width:50% !important; margin-bottom: 5px !important;}
+.lastnames5{ float:left !important; width:50% !important; margin-bottom: 5px !important;}
+.IconSet {
+    font-size: 18px !important;
+}
+.mobilePadding{
+    margin-left: 27px;
+}
+}
+
+@media only screen and (max-width: 500px)  {
+.lastnames1{ float:left; width:50%;}
+.lastnames2{ float:left; width:50%;}
+.lastnames3{ float:left; width:50%;}
+.lastnames4{ float:left; width:50%;}
+.lastnames5{ float:left; width:50%;}
+
+}</style><script>$(function() {    
+    var isXS = false,
+        $accordionXSCollapse = $('.accordion-xs-collapse');
+
+    // Window resize event (debounced)
+    var timer;
+    $(window).resize(function () {
+        if (timer) { clearTimeout(timer); }
+        timer = setTimeout(function () {
+            isXS = Modernizr.mq('only screen and (max-width: 767px)');
+            
+            // Add/remove collapse class as needed
+            if (isXS) {
+                $accordionXSCollapse.addClass('collapse');               
+            } else {
+                $accordionXSCollapse.removeClass('collapse');
+            }
+        }, 100);
+    }).trigger('resize'); //trigger window resize on pageload    
+    
+    // Initialise the Bootstrap Collapse
+    $accordionXSCollapse.each(function () {
+        $(this).collapse({ toggle: false });
+    });      
+    
+    // Accordion toggle click event (live)
+    $(document).on('click', '.accordion-xs-toggle', function (e) {
+        e.preventDefault();
+        
+        var $thisToggle = $(this),
+            $targetRow = $thisToggle.parent('.tr'),
+            $targetCollapse = $targetRow.find('.accordion-xs-collapse');            
+        
+        if (isXS && $targetCollapse.length) { 
+            var $siblingRow = $targetRow.siblings('.tr'),
+                $siblingToggle = $siblingRow.find('.accordion-xs-toggle'),
+                $siblingCollapse = $siblingRow.find('.accordion-xs-collapse');
+            
+            $targetCollapse.collapse('toggle'); //toggle this collapse
+            $siblingCollapse.collapse('hide'); //close siblings
+            
+            $thisToggle.toggleClass('collapsed'); //class used for icon marker
+            $siblingToggle.removeClass('collapsed'); //remove sibling marker class
+        }
+    });
+});</script>

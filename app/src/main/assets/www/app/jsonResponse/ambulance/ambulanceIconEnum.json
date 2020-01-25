@@ -1,0 +1,21 @@
+{
+    "ICONS": {
+        "ONE": "app/images/ambulance/Location_pin_1.png",
+        "TWO": "app/images/ambulance/Location_pin_2.png",
+        "THREE": "app/images/ambulance/Location_pin_3.png",
+        "FOUR": "app/images/ambulance/Location_pin_4.png",
+        "FIVE": "app/images/ambulance/Location_pin_5.png",
+        "FIVEPLUS": "app/images/ambulance/Location_pin_5_plus.png",
+        "AMBULANCE" : "app/images/ambulance/Ambulance.png",
+        "DEFAULT": "app/images/pointers/male.png"
+    },
+    "SELECTED_ICONS": {
+        "ONE": "app/images/ambulance/Location_mark_1.png",
+        "TWO": "app/images/ambulance/Location_mark_2.png",
+        "THREE": "app/images/ambulance/Location_mark_3.png",
+        "FOUR": "app/images/ambulance/Location_mark_4.png",
+        "FIVE": "app/images/ambulance/Location_mark_5.png",
+        "FIVEPLUS": "app/images/ambulance/Location_mark_5_plus.png",
+        "AMBULANCE" : "app/images/ambulance/ambulance_mark.png"
+    }
+}

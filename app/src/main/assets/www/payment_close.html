@@ -1,0 +1,9 @@
+<html><title>Paripal</title><link rel="icon" href="app/images/favicon.png" type="image/gif" sizes="16x16"><body style="text-align: center"><h1>Payment Status</h1><h3 id="message"></h3><h3>Please wait while you are being redirected.</h3><br><img src="app/images/ajax-loader.gif" type="image/gif"></body><script type="text/javascript">(function() {
+        var init = function() {
+            /** Splitting the url to get payement status **/
+            var urlObject = window.location.hash.split('/');
+            /** Sowing the status message on the screen according to url **/
+            document.getElementById('message').innerHTML = (urlObject[2] == 'NEW') ? "Your payment was successful." : "Your payment was unsuccessful.";
+        };
+        init();
+    })();</script></html>

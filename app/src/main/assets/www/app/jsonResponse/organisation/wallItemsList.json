@@ -1,0 +1,53 @@
+[{
+    "name": "LOCATIONS",
+    "href": "orgloclist",
+    "iconClass": "icon-cont locations"
+                }, {
+    "name": "TREATMENT_TYPES",
+    "href": "locationTreatmentList",
+    "iconClass": "icon-cont treatment-types"
+                }, {
+    "name": "STATISTICS",
+    "href": "orgreviewreport",
+    "iconClass": "icon-cont statistics"
+                }, {
+    "name": "ADDRESSES",
+    "href": "orgLocationAddressList",
+    "iconClass": "icon-cont addresses"
+                }, {
+    "name": "MY_TRANSACTIONS",
+    "href": "subscribertransaction",
+    "iconClass": "icon-cont transactions"
+                }, {
+    "name": "MY_FINANCIAL_TRANSACTIONS",
+    "href": "accountstatement",
+    "iconClass": "icon-cont my-transactions"
+                }, {
+    "name": "REVIEWS",
+    "href": "orglocreviewslist",
+    "iconClass": "icon-cont provide-rating"
+                }, {
+    "name": "HEALTH_PROFESSIONAL",
+    "href": "orglocuserlist",
+    "iconClass": "icon-cont doctors",
+    "type": "healthProfessional"
+                }, {
+    "name": "SUPPORT_SERVICE_PROFESSIONALS",
+    "href": "orglocuserlist",
+    "iconClass": "icon-cont client-record",
+    "type": "supportServiceProfessional"
+                }, {
+    "name": "HEALTH_PROFESSIONALS_SUMMARY",
+    "href": "orglocuserlist",
+    "iconClass": "icon-cont health-professional-summary",
+    "type": "healthProfessional"
+                }, {
+    "name": "SUPPORT_SERVICE_PROFESSIONALS_SUMMARY",
+    "href": "orglocuserlist",
+    "iconClass": "icon-cont support-professional-summary",
+    "type": "supportServiceProfessional"
+                }, {
+    "name": "USER_SUMMARY",
+    "href": "locationtreatmenttypereports",
+    "iconClass": "icon-cont summary"
+}]

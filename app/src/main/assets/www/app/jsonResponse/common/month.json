@@ -1,0 +1,50 @@
+[
+    {
+        "id": "1",
+        "value": "JANUARY"
+    },
+    {
+        "id": "2",
+        "value": "FEBRUARY"
+    },
+    {
+        "id": "3",
+        "value": "MARCH"
+    },
+    {
+        "id": "4",
+        "value": "APRIL"
+    },
+    {
+        "id": "5",
+        "value": "MAY"
+    },
+    {
+        "id": "6",
+        "value": "JUNE"
+    },
+    {
+        "id": "7",
+        "value": "JULY"
+    },
+    {
+        "id": "8",
+        "value": "AUGUST"
+    },
+    {
+        "id": "9",
+        "value": "SEPTEMBER"
+    },
+    {
+        "id": "10",
+        "value": "OCTOBER"
+    },
+    {
+        "id": "11",
+        "value": "NOVEMBER"
+    },
+    {
+        "id": "12",
+        "value": "DECEMBER"
+    }
+]

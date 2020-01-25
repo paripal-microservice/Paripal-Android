@@ -1,0 +1,24 @@
+<div class="col-md-12 video-thumbnail"><div class="row" ng-hide="hideUploadBtn"><div class="col-sm-12 col-md-2 col-lg-2 padding-5"><div class="fileUpload btn btn-primary"><span class="ng-binding"><i class="fa fa-upload"></i></span> <input id="fileInput" type="file" class="upload" style="height: 40px" onchange="angular.element(this).scope().fileChange(this)" multiple=""></div></div></div><style>.fileUpload {
+            position: relative;
+            overflow: hidden;
+            margin: 10px;
+        }
+
+        .fileUpload span {
+            font-size: 17px;
+            display: block;
+            padding: 2px 5px;
+        }
+
+        .fileUpload input.upload {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            width: 90px;
+        }</style></div>

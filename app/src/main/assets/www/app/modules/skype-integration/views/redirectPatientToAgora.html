@@ -1,0 +1,20 @@
+<div class="redirectCall"><p>Are You Ready ? Press Call Button To Start Video Call</p><br><md-button type="button" ng-disabled="!browserCompatible || showSpinner" ng-click="goToAgora()" class="md-raised"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;{{"Call Doctor"|translate}}</md-button><br><br><p ng-if="!browserCompatible" style="color: red">Your Browser does not support Video Calling. This works best on Chrome or Firefox browsers</p><p>আপনার ফ্রি ৩ মিনিট শেষ হবার পর প্রতি মিনিট সরাসরি ডাক্তারের সাথে ভিডিও কলের জন্য ২.৫৫ টাকা চার্জ করা হবে।</p></div><style>.redirectCall{
+	text-align: center;
+	margin-top:18%;
+}
+
+
+@media only screen and (max-width:600px){
+	.redirectCall{
+	    left: 0% !important;
+	    margin-top: 50% !important;
+	}
+}
+
+@media only screen and (min-device-width: 360px) 
+                   and (max-device-width: 640px) 
+                   and (orientation: landscape) {
+   .redirectCall {
+   	margin:20% !important;
+   }    	
+}</style>

@@ -1,0 +1,274 @@
+<div class="pageTitle"><span>{{'USER_MEDICATION' | translate}}</span><help-directive help-id="VIEW_USER_MED" class="divContainer"></help-directive></div><div class="filterPanel filter"><uib-accordion><uib-accordion-group is-open="status.open"><uib-accordion-heading><i class="fa fa-filter"></i> <span>&nbsp;{{'FILTER'|translate}}</span> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i></uib-accordion-heading><form name="medicationform" ng-submit="fetchUserMedication(searchDisease)" novalidate="novalidate" class="form-horizontal panel-body-top" id="usermedication" autocomplete="off"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><div class="row"><div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><md-input-container><spinner name="userNameAutoCmp" img-src="{{autoCompletLoaderImg}}" show="userNameAutoCmpLoading" is-auto-complete="true"></spinner><label>{{'USER'|translate}} <span style="color:red">*</span></label><input ng-model="userMedication.user" ng-readonly="userReadOnly" required name="user" id="user" autocomplete="off" uib-typeahead="user as user.value for user in getUserNamesForRoleHistory($viewValue)" typeahead-loading="loading" typeahead-min-length="getSmartSearchMinLength('userMinLength')" required><div ng-messages="medicationform.user.$error"><div ng-message="required">{{'REQUIRED' |translate}}</div><div ng-message="maxlength">{{'MAX_LENGTH' |translate}}</div></div></md-input-container></div><div class="col-xs-12 col-sm-12 col-md-6 col-lg-6"><md-input-container><label>{{'DISEASE' | translate}}</label><input ng-disabled="viewmode || allMode" ng-model="userMedication.diseaseId" name="disease" ng-maxlength="50" id="autocompleteFieldOrg" autocomplete="off" uib-typeahead="disease as disease.value for disease in getDisease($viewValue)" typeahead-min-length="getSmartSearchMinLength('diseaseMinLength')" typeahead-on-select="getDiseaseId(userMedication.diseaseId.id)"></md-input-container></div></div><div class="row"><div class="col-sm-12 col-md-6 col-lg-6 selectDropdown"><md-input-container class="md-block"><label>{{'DISEASE_VARIANT'|translate}}</label><input type="text" name="diseaseVariant" ng-model="userMedication.diseaseVariant" ng-disabled="viewmode" autocomplete="off" uib-typeahead="diseaseVariant as diseaseVariant.value for diseaseVariant in getDiseaseVariant($viewValue)" typeahead-loading="loading" typeahead-min-length="getSmartSearchMinLength('diseaseVariantMinLength')"></md-input-container></div><div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="padding-top:15px"><md-input-container><md-radio-group ng-model="userMedication.current"><div class="col-sm-12 col-md-3 col-lg-3"><md-radio-button ng-value="'all'">{{'ALL'|translate}}</md-radio-button></div><div class="col-sm-12 col-md-4 col-lg-4"><md-radio-button ng-value="true">{{'ONGOING'|translate}}</md-radio-button></div><div class="col-sm-12 col-md-3 col-lg-3"><md-radio-button ng-value="false">{{'STOPPED'|translate}}</md-radio-button></div></md-radio-group></md-input-container></div></div><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 textAlign-R wizardFooter"><md-button type="reset" ng-click="clear()" class="md-raised">{{"RESET"|translate}}</md-button><md-button type="submit" ng-click="fetchRecords(userMedication)" ng-disabled="!medicationform.$valid" class="md-raised md-warn">{{"APPLY"|translate}}</md-button></div></div></form></uib-accordion-group></uib-accordion></div><div class="row padding-b-10 padding-t-20"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><md-button type="button" class="md-raised md-warn" ng-click="addNewUserMedication(userMedication)" ng-show="whetherAccessbleUser || indsub" check-permission feature-privilege="{{restrictAdd?false:featurePrivilegeConstants.USER_MEDICATION_ADD}}"><i class="fa fa-plus"></i> {{'ADD_NEW' | translate}}</md-button><md-button type="button" class="md-raised md-warn cardViewCls">{{'CARD_VIEW' | translate}}</md-button><md-button type="button" class="md-raised md-warn listViewCls">{{'LIST_VIEW' | translate}}</md-button><div class="pull-right"><md-menu><md-button type="button" class="md-raised" ng-click="$mdOpenMenu($event)">{{'SHOW'|translate}} {{itemPerPage}}</md-button><md-menu-content width="3" ng-init="maxRecordsAr = [10,25,50,100]"><md-menu-item ng-repeat="item in maxRecordsAr"><md-button ng-click="setMaxRecords(item)"><span md-menu-align-target>{{'SHOW'|translate}} {{item}} </span></md-button></md-menu-item></md-menu-content></md-menu></div></div></div><div ng-repeat="userMedication in userMedicationList" class="cardViewClss"><div class="col-xs-12 col-sm-6 col-md-3 col-lg-3" style="padding-right:0px;padding-left:0px"><md-content><md-card><md-toolbar layout-padding style="color: #f97524;background-color: #e9f2f8 !important;padding-top: 8px;border: 1px solid #CFD7E6"><div style="padding: 3px;padding-left: 0px;width:70%"><p style="font-weight: bold; font-size: 12px">{{userMedication.medication.value}}{{userMedication.medicationBrand?"-":""}}{{userMedication.medicationBrand}}</p><p style="font-size: 12px;padding-top:5px">{{userMedication.diseaseVariant.value}}</p><md-toolbar-icon style="position:absolute;top: 26%;left: 72%"><a class="pointer" ng-click="manageUserMedication(userMedication.id,true)" ng-show="whetherAccessbleUser || loginDetails.id ==  userMedication.user.id" check-permission feature-privilege="{{featurePrivilegeConstants.USER_MEDICATION_EDIT}}">{{"EDIT" | translate}}&nbsp;/</a><a class="pointer" ng-click="manageUserMedication(userMedication.id,false)"> {{"VIEW" | translate}}</a></md-toolbar-icon></div></md-toolbar><md-card-content class="cardLayoutClass"><div style="height:53%"><div class="Tablet_content textWrap"><span>{{userMedication.medicationVariantName?userMedication.medicationVariantName: userMedication.medicationVariant.value}}</span><br><span>Start on:{{userMedication.startDate | date: 'dd/MM/yyyy'}}</span><br><span>{{(userMedication.dateStopped)?'DATE_STOPPED':'ONGOING' |translate}} {{(userMedication.dateStopped)?(userMedication.dateStopped | date: 'dd/MM/yyyy'):''}}</span></div><div class="Tablet_content textWrap" style="width:50%;float:right"><span>{{userMedication.dosagePattern}}</span><br><span>{{userMedication.dosage}}</span><br><span>{{userMedication.linkageWithFood.value}}</span></div><span style="margin-left:5px;float:left"><p><b>{{'SIDE_EFFECT_PRESCRIBED_BY' | translate}}:</b>{{userMedication.prescribedOriginallyBy.value}}</p></span></div><hr ng-if="!hideCardViewMenu"><div class="td firstnames MobileCarousel" ng-if="!hideCardViewMenu"><div id="myCarousel{{$index}}" class="carousel slide" data-ride="carousel" data-interval="false"><div class="carousel-inner"><div class="item active"><md-chips><md-chip><a style="padding-left:inherit" class="pointer classset1" ng-click="validateRemoveUserMedication(userMedication.id,userMedication.user.id,userMedication.creatingOrganizationId.id, $index)" ng-show="whetherAccessbleUser" check-permission feature-privilege="{{featurePrivilegeConstants.USER_MEDICATION_INACTIVE}}"><span>Inactive</span><span class="verLine"></span></a><a style="padding-left:inherit" class="pointer lineSet classset1" ng-click="redirectToMedication(userMedication)"><span>Medication</span><span class="verLine"></span></a> <a style="padding-left:inherit" class="pointer lineSet classset2" ng-click="redirectToMedicationSatistics(userMedication)"><span>Stats</span></a></md-chip></md-chips></div><div class="item"><md-chips><md-chip><a class="pointer lineSet classset2" ng-click="redirectToDiseaseMedication(userMedication)"><span>Disease Med</span><span class="verLine"></span></a> <a class="pointer lineSet classset3" ng-click="redirectToMedicationSideEffect(userMedication)"><span>Side Effect</span><span class="verLine"></span></a> <a class="pointer lineSet classset3" ng-click="redirectToMedicationEquvalance(userMedication)"><span>Equivalence</span></a></md-chip></md-chips></div><div class="item"><md-chips><md-chip><a class="pointer lineSet classset3" ng-click="makePrescription($event,userMedication.creatingOrganizationId.id,userMedication.user.id,userMedication.disease.id)"><span>Pres</span></a></md-chip></md-chips></div></div><a class="left carousel-control" data-target="#myCarousel{{$index}}" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span> <span class="sr-only">Previous</span> </a><a class="right carousel-control" data-target="#myCarousel{{$index}}" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span> <span class="sr-only">Next</span></a></div></div></md-card-content></md-card></md-content></div></div><div class="table-responsive foo listViewClss" ng-class="{'posRelative':orglocclientlistSpinner}"><spinner name="orglocclientlistSpinner" img-src="{{pageLoaderImg}}" show="orglocclientlistSpinner"></spinner><div><table datatable="ng" dt-options="options" dt-column-defs="dtColumnDefs" class="table table-striped table-hover rwd-table dt-responsive" width="100%"><thead><tr><th>{{'MEDICATION' | translate}}</th><th>{{'DRUG_VARIANT' | translate}}</th><th>{{'DOSAGE' | translate}}</th><th>{{'PATTERN' | translate}}</th><th>{{'IS_CURRENT' | translate}}</th><th>{{'CONCERN_WITH_USE' | translate}}</th><th>{{'NATURE_OF_CONCERN' | translate}}</th><th>{{'LOCATIONS' | translate}}</th></tr></thead><tbody><tr ng-repeat="userMedication in userMedicationList"><td><div class="btn-group"><a class="dropdown-toggle dropDownBtnLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{userMedication.medication.value}}</a><ul class="dropdown-menu"><li class="pointer"><a ng-click="manageUserMedication(userMedication.id,true)" ng-show="whetherAccessbleUser || loginDetails.id ==  userMedication.user.id" check-permission feature-privilege="{{featurePrivilegeConstants.USER_MEDICATION_EDIT}}"><i class="fa fa-pencil"></i> {{"EDIT" | translate}}</a></li><li class="pointer"><a ng-click="manageUserMedication(userMedication.id,false)"><i class="fa fa-eye"></i> {{"VIEW" | translate}}</a></li><li class="pointer" ng-if="!hideCardViewMenu"><a ng-click="validateRemoveUserMedication(userMedication.id,userMedication.user.id,userMedication.creatingOrganizationId.id, $index)" ng-show="whetherAccessbleUser" check-permission feature-privilege="{{featurePrivilegeConstants.USER_MEDICATION_INACTIVE}}"><i class="fa fa-stop"></i> {{"INACTIVATE" | translate}}</a></li><li class="pointer" ng-if="!hideCardViewMenu"><a ng-click="redirectToMedication(userMedication)"><i class="fa fa-line-chart"></i> {{"MEDICATION" | translate}}</a></li><li class="pointer" ng-if="!hideCardViewMenu"><a ng-click="redirectToMedicationSatistics(userMedication)"><i class="fa fa-area-chart"></i> {{"MED_STATISTICS" | translate}}</a></li><li class="pointer" ng-if="!hideCardViewMenu"><a ng-click="redirectToDiseaseMedication(userMedication)"><i class="fa fa-area-chart"></i> {{"DIS_MED" | translate}}</a></li><li class="pointer" ng-if="!hideCardViewMenu"><a ng-click="redirectToMedicationSideEffect(userMedication)"><i class="fa fa-area-chart"></i> {{"MEDICATION_SIDE_EFFECT" | translate}}</a></li><li class="pointer" ng-if="!hideCardViewMenu"><a ng-click="redirectToMedicationEquvalance(userMedication)"><i class="fa fa-area-chart"></i> {{"MEDICATION EQUIVALENCE" | translate}}</a></li><li class="pointer" ng-if="!hideCardViewMenu"><a ng-if="isOrganizationUser" ng-click="makePrescription($event,userMedication.creatingOrganizationId.id,userMedication.user.id,userMedication.disease.id)"><i class="fa fa-area-chart"></i>{{"MAKE_A_PRESCRIIPTION" | translate}}</a></li></ul></div></td><td>{{userMedication.medicationVariant?userMedication.medicationVariant.value:userMedication.medicationVariantName}}</td><td>{{userMedication.dosage}}</td><td>{{userMedication.dosagePattern}}</td><td>{{(userMedication.dateStopped)?'No':'YES' |translate}}</td><td>{{userMedication.concernWithReuse}}</td><td>{{userMedication.natureOfConcern}}</td><td>{{userMedication.creatingOrganizationId.value}}</td></tr></tbody></table></div><div ng-show="totalItems > 0 && disable"><div class="pageRecord"><span>{{'SHOWING' | translate}} {{pagingInfo.startRecord + '-' + pagingInfo.endRecord + ' of ' + totalItems + ' items'}}</span></div><div class="text-center"><uib-pagination max-size="4" total-items="totalItems" ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()" boundary-links="true" class="pagination-md" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></uib-pagination></div></div></div><style>.verLine{
+    margin:5px;
+    border-right:1px solid #ccc;
+
+}
+
+hr{
+    margin:5px 0px !important;
+}
+.Tablet_content {
+    float: left!important;
+    width: 50% !important;
+}
+.Tablet_content span {
+    padding: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+.textWrap{
+    white-space: nowrap; 
+    width: 50px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    line-height:20px;
+   }
+
+.md-chips .md-chip{
+    padding:8px 6px !important;
+    border-radius:5px;
+    text-align: center;
+    box-shadow: 0px 0px 2px rgba(0,0,0,0.2);
+    height:auto !important;
+
+}
+.carousel .item{
+    height: auto; /* Prevent carousel from being distorted if for some reason image doesn't load */
+}
+.carousel .item img{
+    margin: 0 auto; /* Align slide image horizontally center */
+}
+.bs-example{
+    margin: 20px;
+}
+
+md-chips .md-chip {
+    background: #f1f1f1;
+    color: rgb(66,66,66);
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+ .a > .img {
+    color: #337ab7;
+ }
+
+.change-green{
+        color:green;
+    }
+.change-red{
+        color:red;
+    }
+
+.firstnames{width: 100%; word-wrap: break-word;}
+.firstnames12{width: 25%; word-wrap: break-word;}
+.lastnames1{width: 25%; word-wrap: break-word;}
+.lastnames2{width: 25%; word-wrap: break-word;}
+.lastnames3{width: 25%; word-wrap: break-word;}
+.lastnames4{width: 25%; word-wrap: break-word;}
+.lastnames5{width: 25%; word-wrap: break-word;}
+
+ .divtable .tr {
+  overflow: hidden;
+  clear: both;
+  line-height: 20px;
+  
+}
+
+.divtable .oddEven:nth-child(odd) {
+    background-color: #f1f1f1 !important;
+}
+.divtable .oddEven:nth-child(even) {
+    background-color: transparent !important;
+}
+
+.divtable .tr:hover{
+    background-color: #DEEBF6;
+}
+
+.divtable .th,
+.divtable .td {
+  padding: 5px 10px;
+  float: left;
+}
+
+.divtable .th { font-weight: bold; }
+
+.firstname { width: 40%; }
+
+.lastname { width: 30%; }
+
+.username { width: 30%; }
+
+
+.carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next, .carousel-control .icon-prev {
+    width: 0px !important; 
+     height: 0px !important; 
+     margin-top: -10px !important; 
+     font-size: 20px !important; 
+}
+
+
+.carousel-control.right { background-image: none !important; right:14px !important ;top:0px; }
+
+.carousel-control.left { background-image: none !important; left:0px !important ;top:0px; }
+
+
+
+
+ @media (max-width: 767px) {
+.Sample1 {
+    position: relative !important;
+    z-index: 999 !important;
+}
+.Sample2 {
+    position: relative !important;
+    z-index: 999 !important;
+}
+.accordion-xs .headings { display: none; }
+
+.accordion-xs .tr { border-bottom-color: #fff; border-bottom:1px solid #ccc }
+
+.accordion-xs .th,
+ .accordion-xs .td {
+  float: none;
+  width: auto;
+  padding: 0;
+}
+
+.accordion-xs .accordion-xs-toggle {
+  color: #555;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.accordion-xs .accordion-xs-toggle:hover { background-color: #f1f1f1; }
+
+.accordion-xs .accordion-xs-toggle:after {
+  content: '\2b';
+  float: right;
+}
+
+.accordion-xs .accordion-xs-toggle.collapsed:after { content: '\2212'; float: left;}
+     
+.accordion-xs-collapse .inner { padding: 10px; }
+
+.accordion-xs-collapse .td:before { font-weight: bold; }
+
+.glyphicon{
+    /*color:#000000;*/
+}
+
+.accordion-xs .accordion-xs-toggle:after {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  float: left;
+  margin-right: 10px;
+  background-color: #3acce1;
+  border-radius: 50%;
+  padding: 3px;
+  font-size: 10px;
+}
+.lastnames1{ float:left !important; /*width:50% !important;*/ margin-bottom: 5px !important;}
+.lastnames2{ float:left !important; width:50% !important; margin-bottom: 5px !important;}
+.lastnames3{ float:left !important; width:50% !important; margin-bottom: 5px !important;} 
+.lastnames4{ float:left !important; width:50% !important; margin-bottom: 5px !important;}
+.lastnames5{ float:left !important; width:100% !important; margin-bottom: 5px !important;}
+.IconSet {
+    font-size: 18px !important;
+    
+}
+
+.classset1{
+    width:50% !important;
+}
+.classset2{
+    width:50% !important;
+}
+.classset3{
+    width:50% !important;
+}
+.Sample1 {
+    float: left !important;
+    width: 50% !important;
+    background-color: #f1f1f1 !important;          
+}
+.Sample2 {
+    float: left !important;
+    width: 50% !important; 
+    background-color: #f1f1f1 !important;  
+    padding: 10px !important;        
+}
+
+
+/*this is used for text wrap in mobile view */
+.textWrap{
+    white-space: nowrap; 
+    width: 50px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    line-height:20px;
+   }
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.md-chips .md-chip{
+    padding:8px 6px !important;
+    border-radius:5px;
+    text-align: center;
+    box-shadow: 0px 0px 2px rgba(0,0,0,0.2);
+    height:auto !important;
+    
+}
+
+#myCarousel { display: block !important; width: 100% !important; background-color: transparent !important;}
+
+}
+
+@media only screen and (max-width: 500px)  {
+
+}
+
+.carousel-control.left { background-image: none !important; left:-8px ;top:0px; }
+
+.carousel-control.right { background-image: none !important; right:0px ;top:0px; }
+
+/*new*/
+@media (min-width: 992px){
+.col-md-3 {
+    width: 33.3%;
+}
+}
+md-card md-card-content {
+    display: block;
+    padding: 6px;
+}
+/*new*/
+
+/*@media only screen and (max-width:600px){
+
+.listViewCls {
+    display:none;
+}
+.listViewClss {
+    display:none;
+}
+
+}*/
+
+/*@media only screen and (min-width:601px){
+    .cardViewCls {
+        display:none;
+    }  
+    .cardViewClss {
+        display:none;
+    }  
+}*/</style>

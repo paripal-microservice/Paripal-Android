@@ -1,0 +1,112 @@
+<link rel="stylesheet" href="app/styles/css/paripal_healthplus.css"><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><div class="navbar navbar-static-top masthead navbar-top" role="navigation" id="#wrap"><div ng-controller="MainCtrl" class="navbar-header padding-t-15 mobile-topmenu-icon menu-for-mob"><a id="trigger" ng-click="toggleLeft()" ng-if="!whetherFirstLogin" ng-disabled="disableMenu"><button type="button" class="drawer-toggle menuButton"><span class="sr-only">{{'TOGGLE_NAVIGATION'|translate}}</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button></a><p>{{'Health Plus'|translate}}</p></div><div class="container"><div class="collapse navbar-collapse navbar-ex1-collapse header menu-for-web" id="top-nav" ng-hide="whetherFirstLogin"><div ng-controller="homeViewCtrl" ng-if="isLoggedIn && loggedInUserDetails.isOrganizationUser" class="col-sm-12 col-md-3 col-lg-3 col-xs-12 select-org-outer padding-l-10 padding-r-0 padding-l-5"></div></div></div><div layout="column" ng-cloak="" class="sidenavdemoBasicUsage" ng-controller="AuthenticationCtrl"><section class="side-nav-section" layout="row" flex=""><md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4"><md-content layout-padding=""><ul class="side-nav" style="transform: translateX(0px); z-index: 2000"><li><div class="user-view cursor-pointer manu-img"><a href="http://healthplus.life/#/home"><img src="app/images/healthPlusLogo.png" style="height: 100px;width: 100% !important"></a></div></li><li><a ng-click="logout()" href="http://healthplus.life/#/video" class="p red-text text-darken-4"><i class="material-icons red-text text-darken-4">play_circle_outline</i>Videos</a></li><li><a ng-click="logout()" href="http://healthplus.life/#/blog" class="red-text text-darken-4"><i class="material-icons red-text text-darken-4">cast_connected</i>Blog</a></li><li><a ng-click="logout()" href="http://healthplus.life/#/doctorinfo" class="red-text text-darken-4"><i class="material-icons red-text text-darken-4">person_add</i>Doctor Info</a></li><li><a ng-click="logout()" href="http://healthplus.life/#/hopital" class="red-text text-darken-4"><i class="material-icons red-text text-darken-4">business</i>Nearest Hospital</a></li><li><a ng-click="logout()" href="http://healthplus.life/#/pharmacy" class="red-text text-darken-4"><i class="material-icons red-text text-darken-4">location_city</i>Nearest Pharmacy</a></li><li><a ng-click="logout()" href="http://healthplus.life/#/medicinshop" class="red-text text-darken-4"><i class="material-icons red-text text-darken-4">local_pharmacy</i>Medicin Shop</a></li><li><a ng-click="logout()" href="http://healthplus.life/#/insurance" class="red-text text-darken-4"><i class="material-icons red-text text-darken-4">wc</i>Insurance</a></li><li><a ng-click="logout()" href="http://healthplus.life/#/doctorcall" class="red-text text-darken-4"><i class="material-icons red-text text-darken-4">headset_mic</i>Talk with Doctor</a></li><li><a ng-click="logout()" href="http://healthplus.life/#/subscription" class="red-text text-darken-4"><i class="material-icons red-text text-darken-4">control_point</i>Subscription</a></li><li><a target="_new" href="http://45.114.85.19:8080/v1/patient/bookingAppointment" class="red-text text-darken-4"><i class="material-icons red-text text-darken-4">control_point</i>Appointment</a></li><li><a target="_new" href="http://45.114.85.19:8080/v1/patient/documentUpload" class="red-text text-darken-4"><i class="material-icons red-text text-darken-4">control_point</i>Patient Record</a></li><li><a ng-click="logout()" href="http://healthplus.life/#/faq" class="red-text text-darken-4"><i class="material-icons red-text text-darken-4">local_library</i>FAQ</a></li><li><a ng-click="logout()" href="http://healthplus.life/#/Profile" class="red-text text-darken-4"><i class="material-icons red-text text-darken-4">recent_actors</i>Profile Update</a></li><li><a ng-click="logout()" href="http://healthplus.life/#/about" class="red-text text-darken-4"><i class="material-icons red-text text-darken-4">priority_high</i>About</a></li></ul></md-content></md-sidenav><md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right"><md-toolbar class="md-theme-light"><h1 class="md-toolbar-tools">Sidenav Right</h1></md-toolbar><md-content layout-padding=""><form><md-input-container><label for="testInput">Test input</label><input type="text" id="testInput" ng-model="data" md-autofocus=""></md-input-container></form><md-button ng-click="close()" class="md-primary">Close Sidenav Right</md-button></md-content></md-sidenav></section></div><style>@media screen and (min-width: 600px) {
+    md-sidenav {
+        max-width:250px !important;
+    }
+}
+.manu-img {
+    height: 100px;
+    width: 100% !important;
+    padding: 0px !important;
+}
+.sidenavdemoBasicUsage ul li {
+  list-style-type: none;
+  float: none;
+  line-height: 40px;
+}
+.side-nav .user-view, .side-nav .userView {
+    position: relative;
+    padding: 32px 32px 0;
+    margin-bottom: 8px;
+}
+.red-text.text-darken-4 {
+    color: #B71C1C !important;
+}
+.side-nav li>a {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    height: 48px;
+    line-height: 48px;
+    padding: 0 20px;
+}
+.layout-padding {
+  padding: 0px !important;
+}
+.side-nav li>a>i, .side-nav li>a>[class^="mdi-"], .side-nav li>a li>a>[class*="mdi-"], .side-nav li>a>i.material-icons {
+    float: left;
+    height: 48px;
+    line-height: 48px;
+    margin: 0 32px 0 0;
+    width: 24px;
+    color: rgba(0,0,0,0.54);
+}
+.side-nav {
+    /*position: fixed;*/
+    min-width: 250px;
+    left: 0;
+    top: 0;
+    margin: 0;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+    height: 100%;
+    /*height: calc(100% + 60px);*/
+    height: -moz-calc(100%);
+    padding-bottom: 60px;
+    background-color: #fff;
+    z-index: 99999 !important;
+    overflow-y: auto;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translateX(-105%);
+    transform: translateX(-105%);
+    padding: 0px !important;
+}
+.md-sidenav-left, md-sidenav {
+  z-index: 99;
+}
+.sidenavdemoBasicUsage md-sidenav.md-closed {
+  display: none !important;
+}
+@media screen and (max-width: 456px) {
+  md-sidenav {
+    max-width:70% !important;
+    width:95% !important;
+    min-width: unset !important;
+  }
+  
+}
+
+@media only screen and (max-width: 1920px) {
+.md-sidenav-backdrop.md-locked-open{
+    display: inherit !important;
+    position: fixed !important;
+  }
+ md-sidenav.md-locked-open, md-sidenav.md-locked-open.md-closed, md-sidenav.md-locked-open.md-closed.md-sidenav-left{
+    position: fixed !important;
+  }
+  md-sidenav{
+    position: fixed !important;
+  }
+ md-backdrop{
+   position: fixed !important;
+ } 
+
+}
+/*@media only screen and (max-width: 1920px) {
+md-sidenav{
+    position: fixed !important;
+  }
+ md-backdrop{
+   position: fixed !important;
+ } 
+  }*/
+.navbar-header {
+  float: left;
+  width: 100%;
+}
+.navbar-header p {
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+}</style></div>
